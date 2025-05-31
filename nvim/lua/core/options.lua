@@ -1,0 +1,74 @@
+-- Basic settings configuration
+local function set_basic_config()
+    vim.opt.compatible = false                  -- Disable Vi compatibility mode
+    vim.opt.syntax = "on"                       -- Enable syntax highlighting
+    vim.cmd("filetype on")                      -- Enable filetype detection
+    vim.cmd("filetype indent on")               -- Enable auto indentation
+    vim.opt.fileformats = { "unix", "dos" }     -- Set file formats to Unix and DOS
+end
+
+-- Appearance and interface settings
+local function set_appearance()
+    vim.opt.background = "dark"                 -- Set background to dark
+    vim.opt.termguicolors = true                -- Enable true color support
+    vim.opt.laststatus = 2                      -- Always show the status line
+end
+
+-- Clipboard and autocompletion settings
+local function set_clipboard_and_completion()
+    vim.opt.clipboard = "unnamedplus"           -- Set clipboard to use the system clipboard
+    vim.opt.complete:append("d")                -- Enable auto completion for C/C++ macros
+end
+
+-- Tab and indentation settings
+local function set_indent_and_tab()
+    vim.opt.tabstop = 4                         -- Set tabstop to 4 spaces
+    vim.opt.softtabstop = 4                     -- Set softtabstop to 4 spaces
+    vim.opt.expandtab = true                    -- Use spaces instead of tabs
+    vim.opt.smarttab = true                     -- Enable smart tabbing
+    vim.opt.shiftwidth = 4                      -- Set the width for auto-indentation to 4 spaces
+    vim.opt.autoindent = true                   -- Enable auto indentation
+    vim.opt.cindent = true                      -- Enable C-style indentation
+end
+
+-- Search settings
+local function set_search_settings()
+    vim.opt.hlsearch = true                     -- Highlight search matches
+    vim.opt.ignorecase = true                   -- Ignore case while searching
+    vim.opt.smartcase = true                    -- Enable smart case search (case-sensitive if uppercase is used)
+    vim.opt.showmatch = true                    -- Highlight matching parentheses
+    vim.opt.matchtime = 4                       -- Set the time for bracket matching highlight
+end
+
+-- File management settings
+local function set_file_management()
+    vim.opt.backup = false                      -- Disable backup files
+    vim.opt.swapfile = false                    -- Disable swap files
+    vim.opt.writebackup = false                 -- Disable write backup files
+    vim.opt.undofile = false                    -- Disable undo files
+end
+
+-- Other settings
+local function set_other_settings()
+    vim.opt.belloff = "all"                     -- Disable bell
+    vim.opt.cursorline = true                   -- Enable cursor line highlighting
+    vim.opt.number = true                       -- Show line numbers
+    vim.opt.relativenumber = true               -- Show relative line numbers
+    vim.opt.updatetime = 300                    -- Set the update time for CursorHold events
+    vim.opt.mouse = "a"                         -- Enable mouse support in all modes
+    vim.opt.showmode = false                    -- Disable mode display (useful with lualine)
+end
+
+-- Call all configuration functions
+local function apply_configurations()
+    set_basic_config()
+    set_appearance()
+    set_clipboard_and_completion()
+    set_indent_and_tab()
+    set_search_settings()
+    set_file_management()
+    set_other_settings()
+end
+
+-- Execute the configuration
+apply_configurations()
