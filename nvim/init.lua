@@ -1,0 +1,7 @@
+require("core.utils")
+require("core.keymaps")
+require("core.options")
+require("core.autocmds")
+require("plugins.lazy")
+require("plugins.keymaps")
+require("plugins.options")

@@ -9,6 +9,8 @@ call plug#begin('$VIM/vimfiles/plugged')
     Plug 'qpkorr/vim-bufkill'
     Plug 'skywind3000/vim-terminal-help'
     Plug 'menisadi/kanagawa.vim'
+    " Plug 'ghifarit53/tokyonight-vim'
+    " Plug 'sainnhe/sonokai.vim'
     Plug 'junegunn/goyo.vim'
 call plug#end()
 
@@ -45,9 +47,8 @@ filetype on                         " Enable filetype detection
 filetype indent on                  " Enable automatic indentation
 set fileformats=unix,dos            " unix use CR(\n) as newline character, dos use CRLF(\r\n)
 
-" set guifont=Monaco_Nerd_Font_Mono:h10:cANSI:qDRAFT
-" set guifont=Fixedsys
-set guifont=Consolas:h12
+" set guifont=Monaco_Nerd_Font_Mono:h12
+set guifont=Consolas:h14
 
 set belloff=all
 
@@ -78,7 +79,7 @@ set hls                             " Highlight search matches
 set ignorecase                      " Case insensitive search
 set smartcase
 
-set cursorline                      " Highlight cursor line
+set nocursorline                    " Highlight cursor line
 
 " set relativenumber                " Show relative line numbers
 set nonu                            " Show absolute line numbers
@@ -91,16 +92,17 @@ set mouse=a                         " Enable mouse support
 set noshowmode                      " Use lightline status bar
 
 "==============================================
-" Functions
+" Autocmd
 "==============================================
-autocmd BufNewFile,BufRead *.h setfiletype c
-
 " Format options for specific file types
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
 " Set fasm assembler syntax as default
 autocmd BufReadPre *.asm let g:asmsyntax = "fasm"
 
+"==============================================
+" Functions
+"==============================================
 " Reverse the order of selected lines
 function! ReverseLines()
     let lines = getline("'<", "'>")
@@ -110,59 +112,6 @@ endfunction
 " Insert copyright
 command! -nargs=1 InsertCopyright call InsertCopyrightFunc(<f-args>)
 
-function! InsertCopyrightFunc(style)
-    let author = "Dylaris"
-    let license = "MIT"
-    let date = strftime('%Y-%m-%d')
-    let year = strftime('%Y')
-
-    if a:style == 'c'
-        execute 'normal! i' . '/*' . "\n"
-        execute 'normal! 0'
-
-        execute 'normal! i' . ' * Author: ' . author . "\n"
-        execute 'normal! 0'
-
-        execute 'normal! i' . ' * Copyright (c) ' . year . "\n"
-        execute 'normal! 0'
-
-        execute 'normal! i' . ' * License: ' . license . "\n"
-        execute 'normal! 0'
-
-        execute 'normal! i' . ' * Date: ' . date . "\n"
-        execute 'normal! 0'
-
-        execute 'normal! i' . ' *' . "\n"
-        execute 'normal! 0'
-
-        execute 'normal! i' . ' * All rights reserved' . "\n"
-        execute 'normal! 0'
-
-        execute 'normal! i' . ' */' . "\n"
-        execute 'normal! 0'
-    elseif a:style == 'lua'
-        execute 'normal! i' . '-- ' . 'Author: ' . author . "\n"
-        execute 'normal! 0'
-
-        execute 'normal! i' . '-- ' . 'Copyright (c) ' . year . "\n"
-        execute 'normal! 0'
-
-        execute 'normal! i' . '-- ' . 'License: ' . license . "\n"
-        execute 'normal! 0'
-
-        execute 'normal! i' . '-- ' . 'Date: ' . date . "\n"
-        execute 'normal! 0'
-
-        execute 'normal! i' . '--' . "\n"
-        execute 'normal! 0'
-
-        execute 'normal! i' . '-- All rights reserved' . "\n"
-        execute 'normal! 0'
-    else
-        echo "Invalid style. Use 'c' for C-style or 'lua' for Lua-style comments."
-    endif
-endfunction
-
 "==============================================
 " Key Mappings
 "==============================================
@@ -171,7 +120,6 @@ let mapleader = "\<Space>"           " Set leader key to Space
 "----------------------------------------------
 " Normal Mode Mappings
 "----------------------------------------------
-
 nnoremap <Leader>g  :Goyo<CR>
 nnoremap <Leader>ng :Goyo!<CR>
 
@@ -253,18 +201,15 @@ noremap <Leader>p "+p
 noremap <Leader>y "+y
 
 " nerdtree
-nnoremap ;n :NERDTreeFocus<CR>
-nnoremap ;m :NERDTree<CR>
-nnoremap ;t :NERDTreeToggle .<CR>
-nnoremap ;f :NERDTreeFind<CR>
+nnoremap <Leader>e :NERDTreeToggle .<CR>
 
 "----------------------------------------------
 " Visual Mode Mappings
 "----------------------------------------------
 " Move to the first character of the line
 xnoremap <C-h> ^
-" Move to the exd of the line
-xnoremap <C-l> $
+" Move to the exd of the line (exclude '\n')
+xnoremap <C-l> $h
 " Find the selected text
 xnoremap <Leader>f y/<C-r>"
 
@@ -285,11 +230,11 @@ cnoremap jk <Esc>
 "----------------------------------------------
 " Terminal Mode Mappings
 "----------------------------------------------
-tnoremap <A-n> <C-\><C-n>
+tnoremap jk <C-\><C-n>
 tnoremap <A-r> <C-W>"
 tnoremap <A-p> <C-W>""
 
-"----------------------------------------------
+"--------------------------------------------
 " All Mode Mappings
 "----------------------------------------------
 noremap <A-r> <C-r>
@@ -352,16 +297,6 @@ let ayucolor="dark"
 " colorscheme ayu                     " Colorscheme
 
 "----------------------------------------------
-" vim-bufkill
-"----------------------------------------------
-" Unloading a file from the buffer while keeping the window/split intact "      :BUN
-" Deleting a file from the buffer while keeping the window/split intact "       :BD
-" Wiping a file from the buffer while keeping the window/split intact "         :BW
-" Move backwards through recently accessed buffers "                            :BB
-" Move forwards through recently accessed buffers "                             :BF
-" Move to an alternate buffer and keep the cursor in the same column "          :BA
-
-"----------------------------------------------
 " vim-terminal-help
 "----------------------------------------------
 let g:terminal_cwd=2
@@ -378,11 +313,27 @@ function! s:goyo_enter()
 endfunction
 
 function! s:goyo_leave()
-    colorscheme kanagawa
     " Limelight!
 endfunction
 
 autocmd! User GoyoLeave nested call <SID>goyo_leave()
 autocmd! User GoyoEnter nested call <SID>goyo_enter()
+
+"----------------------------------------------
+" sonokai.vim
+"----------------------------------------------
+let g:sonokai_disable_italic_comment = 1
+let g:sonokai_enable_italic = 0
+" default atlantis andromeda shusia maia espresso
+let sonokai_style = "andromeda"
+" colorscheme sonokai
+
+"----------------------------------------------
+" tokyonight.vim
+"----------------------------------------------
+let g:tokyonight_style = 'night' " available: night, storm
+let g:tokyonight_enable_italic = 0
+let g:tokyonight_disable_italic_comment = 1
+" colorscheme tokyonight
 
 colorscheme kanagawa
