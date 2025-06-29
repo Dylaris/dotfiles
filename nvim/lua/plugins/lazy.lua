@@ -16,6 +16,7 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
   -- Colorscheme
+  { "EdenEast/nightfox.nvim" },
   {
       "dgox16/oldworld.nvim",
       lazy = false,

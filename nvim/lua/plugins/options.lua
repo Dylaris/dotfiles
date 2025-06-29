@@ -31,7 +31,7 @@ require("nvim-treesitter.configs").setup {
 -- lualine
 require('lualine').setup {
   options = {
-    theme = 'catppuccin',
+    theme = 'carbonfox',
   },
 }
 
@@ -44,4 +44,4 @@ require("catppuccin").setup({
     }
 })
 
-vim.cmd("colorscheme catppuccin")
+vim.cmd("colorscheme carbonfox")
