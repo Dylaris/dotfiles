@@ -53,12 +53,16 @@ local function set_find_path()
     vim.cmd[[set path=~/.config/nvim/**,~/fun/xcm/,~/fun/luscript/]]
 end
 
+-- Line
+local function set_line()
+    vim.opt.cursorline = fasle                  -- Disable cursor line highlighting
+    vim.opt.number = false                      -- No show line numbers
+    vim.opt.relativenumber = false              -- No show relative line numbers
+end
+
 -- Other settings
 local function set_other_settings()
     vim.opt.belloff = "all"                     -- Disable bell
-    vim.opt.cursorline = false                  -- Disable cursor line highlighting
-    vim.opt.number = false                      -- No show line numbers
-    vim.opt.relativenumber = false              -- No show relative line numbers
     vim.opt.updatetime = 300                    -- Set the update time for CursorHold events
     vim.opt.mouse = "a"                         -- Enable mouse support in all modes
     vim.opt.showmode = false                    -- Disable mode display (useful with lualine)
@@ -73,6 +77,7 @@ local function apply_configurations()
     set_search_settings()
     set_file_management()
     set_find_path()
+    set_line()
     set_other_settings()
 end
 

@@ -31,58 +31,17 @@ require("nvim-treesitter.configs").setup {
 -- lualine
 require('lualine').setup {
   options = {
-    icons_enabled = true,
-    theme = 'tokyonight',
-    ignore_focus = {},
-    always_divide_middle = true,
-    always_show_tabline = true,
-    globalstatus = false,
-    refresh = {
-      statusline = 100,
-      tabline = 100,
-      winbar = 100,
-    }
-  },
-  sections = {
-    lualine_a = {'mode'},
-    lualine_b = {'branch', 'diff', 'diagnostics'},
-    lualine_c = {'filename'},
-    lualine_x = {'encoding', 'fileformat', 'filetype'},
-    lualine_y = {'progress'},
-    lualine_z = {'location'}
-  },
-  inactive_sections = {
-    lualine_a = {},
-    lualine_b = {},
-    lualine_c = {'filename'},
-    lualine_x = {'location'},
-    lualine_y = {},
-    lualine_z = {}
+    theme = 'catppuccin',
   },
 }
 
--- kanagawa
-require('kanagawa').setup({
-    commentStyle = { italic = false },
-    keywordStyle = { italic = false },
-    theme = "wave",
-    overrides = function()
-        return {
-            ["@variable.builtin"] = { italic = false },
-        }
-    end,
-})
-
-require("tokyonight").setup({
+-- catppuccin
+require("catppuccin").setup({
+    no_italic = true,
     styles = {
-        comments = { italic = false },
-        keywords = { italic = false },
+        comments = {},
+        conditionals = {},
     }
 })
 
--- catppuccin
-require("catppuccin").setup({
-    no_italic = true
-})
-
-vim.cmd("colorscheme tokyonight-night")
+vim.cmd("colorscheme catppuccin")

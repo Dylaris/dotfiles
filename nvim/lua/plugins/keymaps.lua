@@ -1,9 +1,6 @@
 -- file tree
 vim.keymap.set("n", "<leader>e", ":NvimTreeFindFileToggle<cr>")
 
--- markdown prefiew
-vim.keymap.set("n", "<leader>mp", ":MarkdownPreviewToggle<cr>")
-
 -- nvim-comment
 vim.keymap.set({"n", "v"}, "gc", ":CommentToggle<cr>")
 

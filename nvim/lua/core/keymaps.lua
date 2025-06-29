@@ -37,7 +37,7 @@ vim.keymap.set("v", "<leader>f", [[y/<C-r>"]])
 -- switch mode
 vim.keymap.set({"i", "c"}, "jk", "<esc>")
 vim.keymap.set("c", "jj", "<C-c>")
-vim.keymap.set("t", "jk", "<C-\\><C-n>")
+vim.keymap.set("t", "<esc>", "<C-\\><C-n>")
 
 -- cancle search highlight
 vim.keymap.set("n", "<leader>nh", ":nohl<cr>")

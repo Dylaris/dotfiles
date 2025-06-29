@@ -16,17 +16,15 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
   -- Colorscheme
-  { "rebelot/kanagawa.nvim" },
+  {
+      "dgox16/oldworld.nvim",
+      lazy = false,
+      priority = 1000,
+  },
   { 
     "catppuccin/nvim", 
     name = "catppuccin", 
     priority = 1000
-  },
-  {
-    "folke/tokyonight.nvim",
-    lazy = false,
-    priority = 1000,
-    opts = {},
   },
 
   -- File tree
@@ -46,14 +44,6 @@ require("lazy").setup({
   {
     "akinsho/bufferline.nvim", version = "*", 
     dependencies = "nvim-tree/nvim-web-devicons"
-  },
-
-  -- Preview markdown live in web browser
-  {
-    "iamcco/markdown-preview.nvim",
-    cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
-    ft = { "markdown" },
-    build = function() vim.fn["mkdp#util#install"]() end,
   },
 
   -- Quickly comment
@@ -93,4 +83,30 @@ require("lazy").setup({
         require("snippets.lua_snippet")
     end,
   },
+
+  -- Cursor style
+  {
+    "sphamba/smear-cursor.nvim",
+    opts = {},
+  },
+
+  -- Alignment
+  {
+    'Vonr/align.nvim',
+    branch = "v2",
+    lazy = true,
+    init = function()
+      -- Aligns to a string with previews
+      vim.keymap.set(
+        'x',
+        'aw',
+        function()
+          require'align'.align_to_string({
+            preview = true,
+            regex = false,
+          })
+        end,
+        NS)
+    end
+  }
 })

@@ -4,14 +4,7 @@
 call plug#begin('$VIM/vimfiles/plugged')
     Plug 'itchyny/lightline.vim'
     Plug 'preservim/nerdtree'
-    Plug 'sheerun/vim-polyglot'
-    Plug 'luochen1990/rainbow'
-    Plug 'qpkorr/vim-bufkill'
     Plug 'skywind3000/vim-terminal-help'
-    Plug 'menisadi/kanagawa.vim'
-    " Plug 'ghifarit53/tokyonight-vim'
-    " Plug 'sainnhe/sonokai.vim'
-    Plug 'junegunn/goyo.vim'
 call plug#end()
 
 "==============================================
@@ -47,12 +40,11 @@ filetype on                         " Enable filetype detection
 filetype indent on                  " Enable automatic indentation
 set fileformats=unix,dos            " unix use CR(\n) as newline character, dos use CRLF(\r\n)
 
-" set guifont=Monaco_Nerd_Font_Mono:h12
-set guifont=Consolas:h14
+set guifont=Fixedsys
 
 set belloff=all
 
-set background=dark
+set background=light
 
 set clipboard=unnamedplus           " Set default operand to system clipboard
 
@@ -109,9 +101,6 @@ function! ReverseLines()
     call setline("'<", reverse(lines))
 endfunction
  
-" Insert copyright
-command! -nargs=1 InsertCopyright call InsertCopyrightFunc(<f-args>)
-
 "==============================================
 " Key Mappings
 "==============================================
@@ -120,38 +109,19 @@ let mapleader = "\<Space>"           " Set leader key to Space
 "----------------------------------------------
 " Normal Mode Mappings
 "----------------------------------------------
-nnoremap <Leader>g  :Goyo<CR>
-nnoremap <Leader>ng :Goyo!<CR>
-
 " Clear search highlights
 nnoremap <Leader>nh :nohls<CR>
-
-" Open a terminal (horizontal)
-nnoremap <Leader>t :term<Space>
-" Open a terminal (vertical)
-nnoremap <Leader>vt :vert term<Space>
-
-" Split window vertically
-nnoremap <Leader>sv <C-w>v
-" Split window horizontally
-nnoremap <Leader>sh <C-w>s
 
 " Open/Close terminal buffer
 nnoremap <Leader>bt :call TerminalToggle()<CR>
 " Edit vimrc
 nnoremap <Leader>br :e!<Space>$MYVIMRC<CR>
 " Close current buffer
-nnoremap <Leader>bd :BD!<CR>
+nnoremap <Leader>bd :bd!<CR>
 " Go to last visited buffer
 nnoremap <Leader>bv :b!<Space>#<CR>
 " Switch to other buffer
 nnoremap <Leader>bs :ls<CR>:b!<Space>
-" Go to modified buffer
-nnoremap <Leader>bm :bmodified!<CR>
-" Move backwards through recently accessed buffers
-nnoremap <Leader>bb :BB<CR>
-" Move forwards through recently accessed buffers
-nnoremap <Leader>bf :BF<CR>
 
 " Move to previous window
 nnoremap <A-h> <C-w>h
@@ -178,8 +148,6 @@ nnoremap <C-h> ^
 " Move to the end of the line
 nnoremap <C-l> $
 
-" Abort file
-nnoremap <Leader>e :q!<CR>
 " Save file
 nnoremap <Leader>w :w<CR>
 " Exit file
@@ -211,7 +179,7 @@ xnoremap <C-h> ^
 " Move to the exd of the line (exclude '\n')
 xnoremap <C-l> $h
 " Find the selected text
-xnoremap <Leader>f y/<C-r>"
+xnoremap ;f y/<C-r>"
 
 "----------------------------------------------
 " Insert Mode Mappings
@@ -230,15 +198,7 @@ cnoremap jk <Esc>
 "----------------------------------------------
 " Terminal Mode Mappings
 "----------------------------------------------
-tnoremap jk <C-\><C-n>
-tnoremap <A-r> <C-W>"
-tnoremap <A-p> <C-W>""
-
-"--------------------------------------------
-" All Mode Mappings
-"----------------------------------------------
-noremap <A-r> <C-r>
-noremap! <A-r> <C-r>
+tnoremap <Esc> <C-\><C-n>
 
 "==============================================
 " Plug Configuration
@@ -270,33 +230,6 @@ let g:netrw_alto = 1        " Display the netrw to left when spliting horizontal
 let g:netrw_winsize = 75    " Set the size of window where netrw lies to 25% (1 - 75%)
 
 "----------------------------------------------
-" nerdtree
-"----------------------------------------------
-
-"----------------------------------------------
-" rainbow
-"----------------------------------------------
-let g:rainbow_conf = {
-    \   'guifgs': ['#FF6347', '#FFD700', '#32CD32', '#1E90FF'],
-    \   'operators': ''
-    \}
-let g:rainbow_active = 1    "set to 0 if you want to enable it later via :RainbowToggle
-
-"----------------------------------------------
-" jellybeans
-"----------------------------------------------
-let g:jellybeans_use_gui_italics = 0
-" colorscheme jellybeans              " Colorscheme
-
-"----------------------------------------------
-" ayu
-"----------------------------------------------
-" let ayucolor="light"
-" let ayucolor="mirage"
-let ayucolor="dark"
-" colorscheme ayu                     " Colorscheme
-
-"----------------------------------------------
 " vim-terminal-help
 "----------------------------------------------
 let g:terminal_cwd=2
@@ -305,35 +238,4 @@ let g:terminal_height=15
 " ALT + =: toggle terminal below.
 " ALT + -: paste register 0 to terminal.
 
-"----------------------------------------------
-" goyo & limelight
-"----------------------------------------------
-function! s:goyo_enter()
-    " Limelight
-endfunction
-
-function! s:goyo_leave()
-    " Limelight!
-endfunction
-
-autocmd! User GoyoLeave nested call <SID>goyo_leave()
-autocmd! User GoyoEnter nested call <SID>goyo_enter()
-
-"----------------------------------------------
-" sonokai.vim
-"----------------------------------------------
-let g:sonokai_disable_italic_comment = 1
-let g:sonokai_enable_italic = 0
-" default atlantis andromeda shusia maia espresso
-let sonokai_style = "andromeda"
-" colorscheme sonokai
-
-"----------------------------------------------
-" tokyonight.vim
-"----------------------------------------------
-let g:tokyonight_style = 'night' " available: night, storm
-let g:tokyonight_enable_italic = 0
-let g:tokyonight_disable_italic_comment = 1
-" colorscheme tokyonight
-
-colorscheme kanagawa
+colorscheme quiet
