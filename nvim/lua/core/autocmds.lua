@@ -17,3 +17,9 @@ vim.api.nvim_create_autocmd("FileType", {
     pattern = { "html", "css", "javsscript", "typescript" },
     command = "setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab"
 })
+
+-- Set filetype=c for C header file
+vim.api.nvim_create_autocmd({"BufNewFile", "BufRead"}, {
+    pattern = "*.h",
+    command = "set filetype=c"
+})

@@ -1,6 +1,9 @@
 -- bufferline
-vim.opt.termguicolors = true
-require("bufferline").setup{}
+require("bufferline").setup{
+    options = {
+        show_buffer_close_icons = false,
+    }
+}
 
 -- treesitter
 for _, config in pairs(require("nvim-treesitter.parsers").get_parser_configs()) do
@@ -29,19 +32,17 @@ require("nvim-treesitter.configs").setup {
 }
 
 -- lualine
-require('lualine').setup {
-  options = {
-    theme = 'carbonfox',
-  },
+require('lualine').setup{
+	options = {
+		-- icons_enabled = false,
+		theme = 'everforest',
+	},
 }
 
--- catppuccin
-require("catppuccin").setup({
-    no_italic = true,
+-- tokyonight
+require("tokyonight").setup{
     styles = {
-        comments = {},
-        conditionals = {},
+        comments = { italic = false },
+        keywords = { italic = false },
     }
-})
-
-vim.cmd("colorscheme carbonfox")
+}

@@ -1,3 +1,6 @@
+-- space bar leader key
+vim.g.mapleader = " "
+
 -- file tree
 vim.keymap.set("n", "<leader>e", ":NvimTreeFindFileToggle<cr>")
 

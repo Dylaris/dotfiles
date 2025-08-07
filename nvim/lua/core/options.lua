@@ -12,6 +12,8 @@ local function set_appearance()
     vim.opt.background = "dark"                 -- Set background to dark
     vim.opt.termguicolors = true                -- Enable true color support
     vim.opt.laststatus = 2                      -- Always show the status line
+    vim.cmd.colorscheme('everforest')
+    vim.cmd("highlight CursorLine guibg=NONE")  -- Set background of cursorline
 end
 
 -- Clipboard and autocompletion settings
@@ -50,14 +52,14 @@ end
 
 -- Search path for builtin-command find 
 local function set_find_path()
-    vim.cmd[[set path=~/.config/nvim/**,~/fun/xcm/,~/fun/luscript/]]
+    vim.cmd[[set path=~/.config/nvim/**,~/fun/zst/,~/fun/luscript/]]
 end
 
 -- Line
 local function set_line()
-    vim.opt.cursorline = fasle                  -- Disable cursor line highlighting
-    vim.opt.number = false                      -- No show line numbers
-    vim.opt.relativenumber = false              -- No show relative line numbers
+    vim.opt.cursorline = true                  -- Disable cursor line highlighting
+    vim.opt.number = true                      -- No show line numbers
+    vim.opt.relativenumber = true              -- No show relative line numbers
 end
 
 -- Other settings
