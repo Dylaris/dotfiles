@@ -1,7 +1,8 @@
 -- bufferline
 require("bufferline").setup{
     options = {
-        show_buffer_close_icons = false,
+        show_buffer_icons = true,
+        show_buffer_close_icons = true,
     }
 }
 
@@ -34,8 +35,8 @@ require("nvim-treesitter.configs").setup {
 -- lualine
 require('lualine').setup{
 	options = {
-		-- icons_enabled = false,
-		theme = 'everforest',
+		icons_enabled = true,
+		theme = 'vague',
 	},
 }
 
@@ -45,4 +46,9 @@ require("tokyonight").setup{
         comments = { italic = false },
         keywords = { italic = false },
     }
+}
+
+-- vague
+require("vague").setup{
+    italic = false
 }

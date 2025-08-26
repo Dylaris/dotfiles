@@ -132,31 +132,16 @@ nnoremap <A-j> <C-w>j
 " Move to next window (down)
 nnoremap <A-k> <C-w>k
 
-" Grow the size of current window (vertical)
-nnoremap <C-Up> <C-w>+
-" Down the size of current window (vertical)
-nnoremap <C-Down> <C-w>-
-" Grow the size of current window (horizontal)
-nnoremap <C-Right> <C-w>>
-" Down the size of current window (horizontal)
-nnoremap <C-Left> <C-w><
-" Equal the size of current window
-nnoremap <C-=> <C-w>=
+" Save file
+nnoremap <Leader>w :w<CR>
+" Exit file
+nnoremap <Leader>q :q<CR>
 
 " Move to the first character of the line
 nnoremap <C-h> ^
 " Move to the end of the line
 nnoremap <C-l> $
 
-" Save file
-nnoremap <Leader>w :w<CR>
-" Exit file
-nnoremap <Leader>q :q<CR>
-
-" Insert a new line below
-nnoremap <C-j> o<Esc>
-" Insert a new line above
-nnoremap <C-k> O<Esc>
 " Break line at current position
 nnoremap <C-n> i<CR><Esc>
 
@@ -179,7 +164,15 @@ xnoremap <C-h> ^
 " Move to the exd of the line (exclude '\n')
 xnoremap <C-l> $h
 " Find the selected text
-xnoremap ;f y/<C-r>"
+xnoremap <Leader>f y/<C-r>"
+
+" Move selected lines below
+xnoremap <C-j> :m '>+1<CR>gv
+" Move selected lines above
+xnoremap <C-k> :m '<-2<CR>gv
+
+" Applay macro a
+xnoremap <TAB> :normal @a<CR>
 
 "----------------------------------------------
 " Insert Mode Mappings

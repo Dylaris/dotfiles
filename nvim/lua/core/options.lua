@@ -12,7 +12,7 @@ local function set_appearance()
     vim.opt.background = "dark"                 -- Set background to dark
     vim.opt.termguicolors = true                -- Enable true color support
     vim.opt.laststatus = 2                      -- Always show the status line
-    vim.cmd.colorscheme('everforest')
+    vim.cmd.colorscheme('vague')
     vim.cmd("highlight CursorLine guibg=NONE")  -- Set background of cursorline
 end
 
@@ -52,7 +52,7 @@ end
 
 -- Search path for builtin-command find 
 local function set_find_path()
-    vim.cmd[[set path=~/.config/nvim/**,~/fun/zst/,~/fun/luscript/]]
+    vim.cmd[[set path=~/.config/nvim/**,~/fun/tool/**,~/tooldoc]]
 end
 
 -- Line

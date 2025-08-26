@@ -16,6 +16,12 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
     -- Colorscheme
+    { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
+    {
+        "vague2k/vague.nvim",
+        lazy = false, -- make sure we load this during startup if it is your main colorscheme
+        priority = 1000, -- make sure to load this before all the other plugins
+    },   
     { 
         "sainnhe/sonokai",
         lazy = false,
@@ -23,23 +29,11 @@ require("lazy").setup({
         config = function()
             vim.g.sonokai_enable_italic = false
             -- 'default', 'atlantis', 'andromeda', 'shusia', 'maia'
-            vim.g.sonokai_style = 'atlantis'
+            vim.g.sonokai_style = 'andromeda'
             vim.g.sonokai_better_performance = 1
             vim.g.sonokai_disable_italic_comment = 1
         end
     },
-    { 
-        "sainnhe/everforest",
-        lazy = false,
-        priority = 1000,
-        config = function()
-            vim.g.everforest_enable_italic = false
-            vim.g.everforest_disable_italic_comment = 1
-            vim.g.everforest_background = 'hard'
-            vim.g.everforest_better_performance = 1
-        end
-    },
-    { 'nyoom-engineering/oxocarbon.nvim' },
     {
         "folke/tokyonight.nvim",
         lazy = false,
@@ -174,5 +168,6 @@ require("lazy").setup({
 	},
 
     -- Rainbow paren
-    { "hiphish/rainbow-delimiters.nvim" },
+    -- { "hiphish/rainbow-delimiters.nvim" },
 })
+
