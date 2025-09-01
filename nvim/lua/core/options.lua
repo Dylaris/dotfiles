@@ -12,7 +12,7 @@ local function set_appearance()
     vim.opt.background = "dark"                 -- Set background to dark
     vim.opt.termguicolors = true                -- Enable true color support
     vim.opt.laststatus = 2                      -- Always show the status line
-    vim.cmd.colorscheme('vague')
+    vim.cmd.colorscheme('nightfox')
     vim.cmd("highlight CursorLine guibg=NONE")  -- Set background of cursorline
 end
 
@@ -30,7 +30,7 @@ local function set_indent_and_tab()
     vim.opt.smarttab = true                     -- Enable smart tabbing
     vim.opt.shiftwidth = 4                      -- Set the width for auto-indentation to 4 spaces
     vim.opt.autoindent = true                   -- Enable auto indentation
-    vim.opt.cindent = true                      -- Enable C-style indentation
+    vim.opt.smartindent = true                  -- Enable smart auto indentation
 end
 
 -- Search settings

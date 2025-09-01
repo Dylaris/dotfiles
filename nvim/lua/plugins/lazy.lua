@@ -16,30 +16,7 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
     -- Colorscheme
-    { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
-    {
-        "vague2k/vague.nvim",
-        lazy = false, -- make sure we load this during startup if it is your main colorscheme
-        priority = 1000, -- make sure to load this before all the other plugins
-    },   
-    { 
-        "sainnhe/sonokai",
-        lazy = false,
-        priority = 1000,
-        config = function()
-            vim.g.sonokai_enable_italic = false
-            -- 'default', 'atlantis', 'andromeda', 'shusia', 'maia'
-            vim.g.sonokai_style = 'andromeda'
-            vim.g.sonokai_better_performance = 1
-            vim.g.sonokai_disable_italic_comment = 1
-        end
-    },
-    {
-        "folke/tokyonight.nvim",
-        lazy = false,
-        priority = 1000,
-        opts = {},
-    },
+    { "EdenEast/nightfox.nvim" },
 
     -- Buffer management
     {
@@ -96,6 +73,8 @@ require("lazy").setup({
             require("luasnip.loaders.from_vscode").lazy_load()
             require("snippets.c_snippet")
             require("snippets.lua_snippet")
+            require("snippets.php_snippet")
+            require("snippets.html_snippet")
         end,
     },
 

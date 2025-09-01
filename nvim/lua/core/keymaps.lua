@@ -21,14 +21,12 @@ vim.keymap.set("n", "<A-k>", "<C-w>k")
 vim.keymap.set({"n", "v"}, "<C-h>", "^")
 vim.keymap.set("n", "<C-l>", "$")
 vim.keymap.set("v", "<C-l>", "$h")
+vim.keymap.set({"n", "v"}, "<C-k>", "{")
+vim.keymap.set({"n", "v"}, "<C-j>", "}")
 
 -- save/quitfile 
 vim.keymap.set("n", "<leader>w", ":w<cr>")
 vim.keymap.set("n", "<leader>q", ":q<cr>")
-
--- move selected lines
-vim.keymap.set("v", "<C-k>", ":m '<-2<cr>gv")
-vim.keymap.set("v", "<C-j>", ":m '>+1<cr>gv")
 
 -- break line
 vim.keymap.set("n", "<C-n>", "i<cr><esc>")
@@ -46,3 +44,6 @@ vim.keymap.set("n", "<leader>nh", ":nohl<cr>")
 
 -- macro
 vim.keymap.set("v", "<tab>", ":normal @a<cr>");
+
+-- delete line content before curson
+vim.keymap.set("n", "du", "d^");

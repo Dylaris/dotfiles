@@ -13,7 +13,7 @@ end
 require("nvim-treesitter.configs").setup {
   ensure_installed = { 
       "c", "lua", "cpp", "markdown", "make", "bash", "go",
-      "javascript", "html", "css",
+      "javascript", "html", "css", "php",
   },
   sync_install = false,
   auto_install = true,
@@ -30,25 +30,16 @@ require("nvim-treesitter.configs").setup {
     end,
     additional_vim_regex_highlighting = false,
   },
+  -- Needed because treesitter highlight turns off autoindent for php files
+  indent = {
+    enable = true,
+  },
 }
 
 -- lualine
 require('lualine').setup{
 	options = {
 		icons_enabled = true,
-		theme = 'vague',
+		theme = 'nightfox',
 	},
-}
-
--- tokyonight
-require("tokyonight").setup{
-    styles = {
-        comments = { italic = false },
-        keywords = { italic = false },
-    }
-}
-
--- vague
-require("vague").setup{
-    italic = false
 }

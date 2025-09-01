@@ -16,13 +16,17 @@ ls.add_snippets('lua', {
         f(function(args) return args[1][1] end, {1}),
         t({'', '', ''}),
 
-        -- function Person:new() ... end
+        -- function Person.new() ... end
         t('function '),
         f(function(args) return args[1][1] end, {1}),
-        t({':new()', ''}),
+        t({'.new()', ''}),
         t({
             '    local obj = {}',
-            '    setmetatable(obj, self)',
+            '    setmetatable(obj, ',
+        }),
+        f(function(args) return args[1][1] end, {1}),
+        t({
+            ')',
             '    return obj',
             'end',
             '',

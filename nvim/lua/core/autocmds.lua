@@ -13,13 +13,28 @@ vim.api.nvim_create_autocmd("BufReadPre", {
 })
 
 -- Set indent width
+--[[
 vim.api.nvim_create_autocmd("FileType", {
     pattern = { "html", "css", "javsscript", "typescript" },
     command = "setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab"
 })
+--]]
 
 -- Set filetype=c for C header file
 vim.api.nvim_create_autocmd({"BufNewFile", "BufRead"}, {
     pattern = "*.h",
     command = "set filetype=c"
+})
+
+-- Set php indent
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = "php",
+    -- opt: global opt
+    -- bo: buffer opt
+    -- wo: window opt
+    callback = function()
+        vim.bo.indentexpr = ""
+        vim.bo.autoindent = true
+        vim.bo.smartindent = true
+    end
 })
