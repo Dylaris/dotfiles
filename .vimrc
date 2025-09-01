@@ -18,7 +18,7 @@ if g:load_plugins
         " UI Enhancements
         Plug 'itchyny/lightline.vim'
         Plug 'preservim/nerdtree'
-        
+
         " Utilities
         Plug 'skywind3000/vim-terminal-help'
     call plug#end()
@@ -103,7 +103,7 @@ set softtabstop=4                   " Spaces in edit operation
 set expandtab                       " Convert tabs to spaces
 set shiftwidth=4                    " Autoindent width
 set autoindent                      " Enable auto indentation
-set smartindent                     " Smart indent handling
+set cindent                         " C indent handling
 set smarttab                        " Smart tab handling
 
 " Matching & Navigation
@@ -142,7 +142,7 @@ if has('gui_running')
     " GUI options
     set guioptions-=m               " Hide menu bar
     set guioptions-=T               " Hide toolbar
-    
+
     " Toggle GUI elements with F2
     map <silent> <F2> :if &guioptions =~# 'T' <Bar>
             \set guioptions-=T <Bar>
@@ -168,6 +168,9 @@ autocmd BufNewFile,BufRead *.h set filetype=c
 
 " Set PHP indentation settings
 autocmd FileType php setlocal indentexpr= autoindent smartindent
+
+" Automatically remove trailing whitespace on save
+autocmd BufWritePre * :%s/\s\+$//e
 
 
 "==============================================

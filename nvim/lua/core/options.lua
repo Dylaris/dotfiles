@@ -30,7 +30,7 @@ local function set_indent_and_tab()
     vim.opt.smarttab = true                     -- Enable smart tabbing
     vim.opt.shiftwidth = 4                      -- Set the width for auto-indentation to 4 spaces
     vim.opt.autoindent = true                   -- Enable auto indentation
-    vim.opt.smartindent = true                  -- Enable smart auto indentation
+    vim.opt.cindent = true                      -- Enable C style auto indentation
 end
 
 -- Search settings

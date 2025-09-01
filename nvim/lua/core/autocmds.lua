@@ -35,6 +35,16 @@ vim.api.nvim_create_autocmd("FileType", {
     callback = function()
         vim.bo.indentexpr = ""
         vim.bo.autoindent = true
-        vim.bo.smartindent = true
+        vim.bo.cindent = true
     end
 })
+
+-- Automatically remove trailing whitespace on save
+vim.api.nvim_create_autocmd("BufWritePre", {
+    pattern = "*",
+    callback = function()
+        local cursor_pos = vim.api.nvim_win_get_cursor(0)
+        vim.cmd([[%s/\s\+$//e]])
+        vim.api.nvim_win_set_cursor(0, cursor_pos)
+    end,
+    })
