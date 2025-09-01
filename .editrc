@@ -1,0 +1,11 @@
+# Enable vi-mode (for libedit)
+
+bind -v
+
+# vi normal mode
+bind -a "^H" ed-move-to-beg
+bind -a "^L" ed-move-to-end
+
+# vi-insert-mode
+bind "jk" vi-command-mode
+bind "^L" ed-clear-screen
