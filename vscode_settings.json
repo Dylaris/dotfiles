@@ -1,0 +1,71 @@
+{
+  "vim.easymotion": true,
+  "vim.incsearch": true,
+  "vim.useSystemClipboard": true,
+  "vim.useCtrlKeys": true,
+  "vim.hlsearch": true,
+  "vim.leader": "<space>",
+  "vim.insertModeKeyBindings": [
+    {
+      "before": ["j", "k"],
+      "after": ["<Esc>"]
+    },
+  ],
+  "vim.normalModeKeyBindingsNonRecursive": [
+    {
+      "before": ["<leader>", "w"],
+      "commands": [":w"]
+    },
+    {
+      "before": ["<leader>", "q"],
+      "commands": [":q"]
+    },
+    {
+      "before": ["<leader>", "n"],
+      "commands": [":nohl"]
+    },
+    {
+      "before": ["<C-n>"],
+      "after": ["i", "<cr>", "<Esc>"],
+    },
+    {
+      "before": ["C-j"],
+      "after": ["}"]
+    },
+    {
+      "before": ["C-k"],
+      "after": ["{"]
+    },
+    {
+      "before": ["C-h"],
+      "after": ["^"]
+    },
+    {
+      "before": ["C-l"],
+      "after": ["$"]
+    },
+  ],
+  "vim.visualModeKeyBindings": [
+    {
+      "before": ["C-j"],
+      "after": ["}"]
+    },
+    {
+      "before": ["C-k"],
+      "after": ["{"]
+    },
+    {
+      "before": ["C-h"],
+      "after": ["^"]
+    },
+    {
+      "before": ["C-l"],
+      "after": ["$", "h"]
+    },
+  ],
+  "extensions.experimental.affinity": {
+    "vscodevim.vim": 1
+  },
+
+  "workbench.colorTheme": "Noctis",
+}
