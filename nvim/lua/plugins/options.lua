@@ -11,7 +11,7 @@ for _, config in pairs(require("nvim-treesitter.parsers").get_parser_configs()) 
   config.install_info.url = config.install_info.url:gsub("https://github.com/", "https://gh.llkk.cc/https://github.com/")
 end
 require("nvim-treesitter.configs").setup {
-  ensure_installed = { 
+  ensure_installed = {
       "c", "lua", "cpp", "markdown", "make", "bash", "go",
       "javascript", "html", "css", "php",
   },
@@ -43,3 +43,4 @@ require('lualine').setup{
 		theme = 'nightfox',
 	},
 }
+

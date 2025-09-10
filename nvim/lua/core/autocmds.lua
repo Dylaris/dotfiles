@@ -13,12 +13,10 @@ vim.api.nvim_create_autocmd("BufReadPre", {
 })
 
 -- Set indent width
---[[
 vim.api.nvim_create_autocmd("FileType", {
-    pattern = { "html", "css", "javsscript", "typescript" },
+    pattern = "this_pattern_will_never_match",
     command = "setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab"
 })
---]]
 
 -- Set filetype=c for C header file
 vim.api.nvim_create_autocmd({"BufNewFile", "BufRead"}, {
@@ -46,5 +44,5 @@ vim.api.nvim_create_autocmd("BufWritePre", {
         local cursor_pos = vim.api.nvim_win_get_cursor(0)
         vim.cmd([[%s/\s\+$//e]])
         vim.api.nvim_win_set_cursor(0, cursor_pos)
-    end,
-    })
+    end
+})

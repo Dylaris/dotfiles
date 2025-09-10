@@ -50,9 +50,9 @@ local function set_file_management()
     vim.opt.undofile = false                    -- Disable undo files
 end
 
--- Search path for builtin-command find 
+-- Search path for builtin-command find
 local function set_find_path()
-    vim.cmd[[set path=~/.config/nvim/**,~/fun/tool/**,~/tooldoc]]
+    vim.cmd[[set path=~/.config/nvim/**,~/fun/wheel/**,~/tooldoc]]
 end
 
 -- Line

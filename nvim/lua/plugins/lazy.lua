@@ -16,6 +16,7 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
     -- Colorscheme
+    { "loctvl842/monokai-pro.nvim" },
     { "EdenEast/nightfox.nvim" },
 
     -- Buffer management
@@ -48,7 +49,7 @@ require("lazy").setup({
 
     -- Treesitter
     {
-        "nvim-treesitter/nvim-treesitter", 
+        "nvim-treesitter/nvim-treesitter",
         branch = 'master', lazy = false, build = ":TSUpdate"
     },
 
@@ -91,10 +92,10 @@ require("lazy").setup({
             local NS = { noremap = true, silent = true }
             -- Aligns to 1 character
             vim.keymap.set('x', 'aa',
-                function() 
-                    require'align'.align_to_char({ 
-                        length = 1, 
-                    }) 
+                function()
+                    require'align'.align_to_char({
+                        length = 1,
+                    })
                 end, NS)
 
             -- Aligns to 2 characters with previews
