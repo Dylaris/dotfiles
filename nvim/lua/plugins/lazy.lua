@@ -16,6 +16,7 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
     -- Colorscheme
+    { "rebelot/kanagawa.nvim" },
     { "loctvl842/monokai-pro.nvim" },
     { "EdenEast/nightfox.nvim" },
 
@@ -149,5 +150,10 @@ require("lazy").setup({
 
     -- Rainbow paren
     -- { "hiphish/rainbow-delimiters.nvim" },
+
+    {
+        "karb94/neoscroll.nvim",
+        opts = {}
+    },
 })
 

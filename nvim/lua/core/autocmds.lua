@@ -4,14 +4,6 @@ vim.api.nvim_create_autocmd("FileType", {
     command = "setlocal formatoptions-=c formatoptions-=r formatoptions-=o",
 })
 
--- Set fasm assembler syntax as default
-vim.api.nvim_create_autocmd("BufReadPre", {
-    pattern = "*.asm",
-    callback = function()
-        vim.g.asmsyntax = "fasm"
-    end,
-})
-
 -- Set indent width
 vim.api.nvim_create_autocmd("FileType", {
     pattern = "this_pattern_will_never_match",
@@ -22,6 +14,12 @@ vim.api.nvim_create_autocmd("FileType", {
 vim.api.nvim_create_autocmd({"BufNewFile", "BufRead"}, {
     pattern = "*.h",
     command = "set filetype=c"
+})
+
+-- Set filetype=fasm for asm/inc file
+vim.api.nvim_create_autocmd({"BufNewFile", "BufRead"}, {
+    pattern = {"*.asm", "*.inc"},
+    command = "set filetype=fasm"
 })
 
 -- Set php indent

@@ -12,7 +12,7 @@ local function set_appearance()
     vim.opt.background = "dark"                 -- Set background to dark
     vim.opt.termguicolors = true                -- Enable true color support
     vim.opt.laststatus = 2                      -- Always show the status line
-    vim.cmd.colorscheme('nightfox')
+    vim.cmd.colorscheme('kanagawa')
     vim.cmd("highlight CursorLine guibg=NONE")  -- Set background of cursorline
 end
 

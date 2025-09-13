@@ -40,7 +40,27 @@ require("nvim-treesitter.configs").setup {
 require('lualine').setup{
 	options = {
 		icons_enabled = true,
-		theme = 'nightfox',
+		theme = 'kanagawa',
 	},
 }
 
+-- neoscroll
+require('neoscroll').setup({
+    mappings = {
+        '<C-u>', '<C-d>',
+        '<C-b>', '<C-f>',
+        'zt', 'zz', 'zb',
+    },
+})
+
+-- kanagawa
+require('kanagawa').setup({
+    overrides = function(colors)
+        local theme = colors.theme
+        return {
+            LineNr = { bg = theme.ui.bg },
+            CursorLineNr = { bg = theme.ui.bg },
+            SignColumn = { bg = theme.ui.bg },
+        }
+    end,
+})
