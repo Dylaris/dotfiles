@@ -1,6 +1,8 @@
 -- bufferline
 require("bufferline").setup{
     options = {
+        themable = false,
+        separator_style = 'slope',
         show_buffer_icons = true,
         show_buffer_close_icons = true,
     }
@@ -40,7 +42,7 @@ require("nvim-treesitter.configs").setup {
 require('lualine').setup{
 	options = {
 		icons_enabled = true,
-		theme = 'kanagawa',
+		theme = 'terafox',
 	},
 }
 

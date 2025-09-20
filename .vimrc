@@ -197,8 +197,10 @@ let mapleader = "\<Space>"          " Leader key
 
 " Clear search highlights
 nnoremap <Leader>nh :nohls<CR>
-" Toggle file explorer
-nnoremap <Leader>e :NERDTreeToggle .<CR>
+if g:load_plugins
+    " Toggle file explorer
+    nnoremap <Leader>e :NERDTreeToggle .<CR>
+endif
 
 """"""""""""""""""""""""""""""
 " Buffer Management
@@ -253,7 +255,7 @@ nnoremap <C-k> {
 """"""""""""""""""""""""""""""
 
 " Break line at cursor
-nnoremap <C-n> i<CR><Esc>
+nnoremap <Enter> i<CR><Esc>
 " Delete to line start
 nnoremap du d^
 
@@ -261,8 +263,10 @@ nnoremap du d^
 " Terminal
 """"""""""""""""""""""""""""""
 
-" Toggle terminal
-nnoremap <Leader>bt :call TerminalToggle()<CR>
+if g:load_plugins
+    " Toggle terminal
+    nnoremap <Leader>bt :call TerminalToggle()<CR>
+endif
 
 """"""""""""""""""""""""""""""
 " Clipboard
