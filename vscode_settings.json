@@ -9,7 +9,17 @@
     {
       "before": ["j", "k"],
       "after": ["<Esc>"]
+    }
+  ],
+  "vim.commandLineModeKeyBindings": [
+    {
+      "before": ["j", "j"],
+      "after": ["<Esc>"]
     },
+    {
+      "before": ["j", "k"],
+      "after": ["<cr>"]
+    }
   ],
   "vim.normalModeKeyBindingsNonRecursive": [
     {
@@ -25,8 +35,8 @@
       "commands": [":nohl"]
     },
     {
-      "before": ["<C-n>"],
-      "after": ["i", "<cr>", "<Esc>"],
+      "before": ["<enter>"],
+      "after": ["i", "<cr>", "<esc>"]
     },
     {
       "before": ["C-j"],
@@ -43,7 +53,7 @@
     {
       "before": ["C-l"],
       "after": ["$"]
-    },
+    }
   ],
   "vim.visualModeKeyBindings": [
     {
@@ -62,10 +72,54 @@
       "before": ["C-l"],
       "after": ["$", "h"]
     },
+    {
+      "before": ["<tab>"],
+      "after": [":", "n", "o", "r", "m", " ", "@", "a", "<cr>"]
+    }
   ],
   "extensions.experimental.affinity": {
     "vscodevim.vim": 1
   },
 
-  "workbench.colorTheme": "Noctis",
+  "workbench.colorTheme": "Ayu Mirage Bordered",
+  "workbench.iconTheme": "material-icon-theme",
+
+  "extensions.ignoreRecommendations": true,
+  "editor.smoothScrolling": true,
+  "editor.cursorBlinking": "smooth",
+
+  "terminal.integrated.profiles.windows": {
+    "PowerShell": {
+      "source": "PowerShell",
+      "icon": "terminal-powershell"
+    },
+    "Command Prompt": {
+      "path": [
+        "${env:windir}\\Sysnative\\cmd.exe",
+        "${env:windir}\\System32\\cmd.exe"
+      ],
+      "args": [],
+      "icon": "terminal-cmd"
+    },
+    "Git Bash": {
+      "source": "Git Bash"
+    },
+    "Windows PowerShell": {
+      "path": "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe"
+    },
+    "Cmder": {
+      "overrideName": true,
+      "path": [
+        "${env:windir}\\Sysnative\\cmd.exe",
+        "${env:windir}\\System32\\cmd.exe"
+      ],
+      "args": [
+        "/k",
+        "D:\\Cmder\\vendor\\init.bat"
+      ],
+      "icon": "terminal-cmd"
+    }
+  }, 
+  "terminal.integrated.defaultProfile.windows": "Cmder",
+  "terminal.integrated.fontWeightBold": "normal"
 }
