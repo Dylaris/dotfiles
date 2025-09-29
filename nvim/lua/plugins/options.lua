@@ -55,18 +55,6 @@ require('neoscroll').setup({
     },
 })
 
--- kanagawa
-require('kanagawa').setup({
-    overrides = function(colors)
-        local theme = colors.theme
-        return {
-            LineNr = { bg = theme.ui.bg },
-            CursorLineNr = { bg = theme.ui.bg },
-            SignColumn = { bg = theme.ui.bg },
-        }
-    end,
-})
-
 -- ayu
 require('ayu').setup({
     mirage = true,
