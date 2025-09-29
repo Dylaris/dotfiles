@@ -16,8 +16,7 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
     -- Colorscheme
-    { "rebelot/kanagawa.nvim" },
-    { "loctvl842/monokai-pro.nvim" },
+	{ "Shatur/neovim-ayu" },
     { "EdenEast/nightfox.nvim" },
 
     -- Buffer management

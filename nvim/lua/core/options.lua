@@ -12,8 +12,8 @@ local function set_appearance()
     vim.opt.background = "dark"                 -- Set background to dark
     vim.opt.termguicolors = true                -- Enable true color support
     vim.opt.laststatus = 2                      -- Always show the status line
-    vim.cmd.colorscheme('terafox')
-    vim.cmd("highlight CursorLine guibg=NONE")  -- Set background of cursorline
+    vim.cmd.colorscheme('ayu')
+    -- vim.cmd("highlight CursorLine guibg=NONE")  -- Set background of cursorline
 end
 
 -- Clipboard and autocompletion settings
@@ -52,7 +52,19 @@ end
 
 -- Search path for builtin-command find
 local function set_find_path()
-    vim.cmd[[set path=~/.config/nvim/**,~/fun/wheel/**,~/tooldoc]]
+    local paths = {
+        "~/.config/nvim/**",
+        "~/project/personal/aris.h/**",
+        "~/project/personal/json.h/**"
+    }
+
+    local path_str = ""
+    for i, path in ipairs(paths) do
+        if i > 1 then path_str = path_str .. "," end
+        path_str = path_str .. path
+    end
+
+    vim.cmd("set path=" .. path_str)
 end
 
 -- Line

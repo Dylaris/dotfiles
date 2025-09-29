@@ -42,7 +42,7 @@ require("nvim-treesitter.configs").setup {
 require('lualine').setup{
 	options = {
 		icons_enabled = true,
-		theme = 'terafox',
+		theme = 'ayu',
 	},
 }
 
@@ -65,4 +65,15 @@ require('kanagawa').setup({
             SignColumn = { bg = theme.ui.bg },
         }
     end,
+})
+
+-- ayu
+require('ayu').setup({
+    mirage = true,
+    terminal = true,
+    overrides = {
+        Comment = { italic = false },
+        ['@property'] = { fg = "#FFFFFF" },
+        ['@type.builtin'] = { fg = "#F28779" }
+    },
 })
