@@ -61,7 +61,7 @@ require('ayu').setup({
     terminal = true,
     overrides = {
         Comment = { italic = false },
-        ['@property'] = { fg = "#FFFFFF" },
+        ['@property'] = { fg = "#D0D0D0" },
         ['@type.builtin'] = { fg = "#F28779" }
     },
 })
