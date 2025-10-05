@@ -1,3 +1,35 @@
+-- oil
+require("oil").setup({
+    -- set 'oil' as default file explorer when using like 'vim .'
+    default_file_explorer = true,
+
+    -- show hidden file
+    view_options = {
+      show_hidden = false,
+    },
+
+    -- display column info
+    columns = {
+      "icon",
+      "permissions",
+      "size",
+      "mtime",
+    },
+
+    -- internal key map
+    keymaps = {
+      ["<C-h>"] = false,
+      ["<C-l>"] = false,
+      ["<C-p>"] = "actions.preview",      -- preview file content
+      ["J"] = "actions.select",        -- open file or enter directory
+      ["K"] = "actions.parent",           -- go back to parent directory
+      ["H"] = "actions.open_cwd",         -- open the current working directory
+      ["L"] = "actions.refresh",         -- open the current working directory
+      ["g."] = { "actions.toggle_hidden", mode = "n" },   -- g. switch to show hidden file
+      ["gs"] = { "actions.change_sort", mode = "n" },
+    },
+})
+
 -- bufferline
 require("bufferline").setup{
     options = {
@@ -15,7 +47,7 @@ end
 require("nvim-treesitter.configs").setup {
   ensure_installed = {
       "c", "lua", "cpp", "markdown", "make", "bash", "go",
-      "javascript", "html", "css", "php",
+      "javascript", "html", "css", "php", "python",
   },
   sync_install = false,
   auto_install = true,
@@ -57,9 +89,10 @@ require('neoscroll').setup({
 
 -- ayu
 require('ayu').setup({
-    mirage = true,
+    mirage = false,
     terminal = true,
     overrides = {
+    	Normal = { bg = "#14141F" },
         Comment = { italic = false },
         ['@property'] = { fg = "#D0D0D0" },
         ['@type.builtin'] = { fg = "#F28779" }

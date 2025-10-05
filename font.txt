@@ -1,2 +1,0 @@
-font name: Iosevka Nerd Font Mono
-font thickness: semi-bold

@@ -44,3 +44,6 @@ vim.keymap.set("v", "<tab>", ":normal @a<cr>");
 
 -- delete line content before curson
 vim.keymap.set("n", "du", "d^");
+
+-- locate file
+vim.keymap.set("v", "<leader>l", "y:e <C-r>0");

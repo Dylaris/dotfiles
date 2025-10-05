@@ -19,24 +19,21 @@ require("lazy").setup({
 	{ "Shatur/neovim-ayu" },
     { "EdenEast/nightfox.nvim" },
 
+    -- Edit file like buffer
+    {
+        'stevearc/oil.nvim',
+        opts = {},
+        dependencies = { { "nvim-mini/mini.icons", opts = {} } },
+        lazy = false,
+    },
+
+    { 'skywind3000/vim-terminal-help' },
+
     -- Buffer management
     {
         'akinsho/bufferline.nvim',
         version = "*",
-        dependencies = 'nvim-tree/nvim-web-devicons',
-    },
-
-    -- File tree
-    {
-        "nvim-tree/nvim-tree.lua",
-        version = "*",
-        lazy = false,
-        dependencies = {
-            "nvim-tree/nvim-web-devicons",
-        },
-        config = function()
-            require("nvim-tree").setup{}
-        end,
+        dependencies = "nvim-mini/mini.icons"
     },
 
     -- Quickly comment
@@ -56,7 +53,7 @@ require("lazy").setup({
     -- Lualine
     {
         "nvim-lualine/lualine.nvim",
-        dependencies = { "nvim-tree/nvim-web-devicons" },
+        dependencies = { "nvim-mini/mini.icons" },
     },
 
     -- No-Neck-Pain
@@ -150,9 +147,14 @@ require("lazy").setup({
     -- Rainbow paren
     -- { "hiphish/rainbow-delimiters.nvim" },
 
+    -- smooth scroll
     {
         "karb94/neoscroll.nvim",
         opts = {}
     },
+}, {
+    git = {
+        url_format = "https://gh.bugdey.us.kg/https://github.com/%s.git"
+    }
 })
 
