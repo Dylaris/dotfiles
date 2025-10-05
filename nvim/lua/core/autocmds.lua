@@ -41,6 +41,7 @@ vim.api.nvim_create_autocmd("BufWritePre", {
     callback = function()
         local cursor_pos = vim.api.nvim_win_get_cursor(0)
         vim.cmd([[%s/\s\+$//e]])
+        vim.cmd([[%s/\r//e]])
         vim.api.nvim_win_set_cursor(0, cursor_pos)
     end
 })

@@ -27,7 +27,13 @@ require("lazy").setup({
         lazy = false,
     },
 
-    { 'skywind3000/vim-terminal-help' },
+    -- Async run command
+    {
+        "skywind3000/asyncrun.vim",
+        config = function()
+            vim.g.asyncrun_open = math.floor(vim.fn.winheight(0) / 2)
+        end
+    },
 
     -- Buffer management
     {
@@ -81,6 +87,8 @@ require("lazy").setup({
         "sphamba/smear-cursor.nvim",
         -- opts = {},
     },
+
+    -- Alignment
 	{
 		'Vonr/align.nvim',
 		branch = "v2",
@@ -147,7 +155,7 @@ require("lazy").setup({
     -- Rainbow paren
     -- { "hiphish/rainbow-delimiters.nvim" },
 
-    -- smooth scroll
+    -- Smooth scroll
     {
         "karb94/neoscroll.nvim",
         opts = {}

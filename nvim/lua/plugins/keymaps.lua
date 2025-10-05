@@ -1,8 +1,8 @@
 -- space bar leader key
 vim.g.mapleader = " "
 
--- file tree
--- vim.keymap.set("n", "<leader>e", ":NvimTreeFindFileToggle<cr>")
+-- buffline
+vim.keymap.set('n', '<leader>bo', '<Cmd>BufferLineCloseLeft<CR><Cmd>BufferLineCloseRight<CR>', { desc = 'Close other buffers' })
 
 -- nvim-comment
 vim.keymap.set({"n", "v"}, "gc", ":CommentToggle<cr>")
@@ -15,3 +15,6 @@ vim.keymap.set("i", "<C-j>", function() ls.jump(-1) end, {silent = true})
 
 -- oil
 vim.keymap.set("n", "<leader>e", ":Oil --float<cr>")
+
+-- asyncrun
+vim.keymap.set({"n", "v"}, "<leader>r", ":AsyncRun ")
