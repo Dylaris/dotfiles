@@ -16,7 +16,7 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
     -- Colorscheme
-    { "Mofiqul/dracula.nvim" },
+    { "Mofiqul/dracula.nvim" }, -- sed -i '/italic = true/s/true/false/g' lua/dracula/groups.lua
 	{ "Shatur/neovim-ayu" },
     { "EdenEast/nightfox.nvim" },
 
