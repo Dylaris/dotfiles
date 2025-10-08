@@ -2,7 +2,7 @@
 vim.g.mapleader = " "
 
 -- buffline
-vim.keymap.set('n', '<leader>bo', '<Cmd>BufferLineCloseLeft<CR><Cmd>BufferLineCloseRight<CR>', { desc = 'Close other buffers' })
+vim.keymap.set('n', '<leader>bo', '<cmd>BufferLineCloseLeft<CR><Cmd>BufferLineCloseRight<cr>', { desc = 'Close other buffers' })
 
 -- nvim-comment
 vim.keymap.set({"n", "v"}, "gc", ":CommentToggle<cr>")
@@ -17,4 +17,4 @@ vim.keymap.set("i", "<C-j>", function() ls.jump(-1) end, {silent = true})
 vim.keymap.set("n", "<leader>e", ":Oil --float<cr>")
 
 -- asyncrun
-vim.keymap.set({"n", "v"}, "<leader>r", ":AsyncRun ")
+vim.keymap.set("n", "<leader>r", ":AsyncRun -mode=term ")

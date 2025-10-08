@@ -47,3 +47,7 @@ vim.keymap.set("v", "<tab>", ":normal @a<cr>");
 
 -- delete line content before curson
 vim.keymap.set("n", "du", "d^");
+
+-- open file (the selected text) in horizontal split window
+vim.keymap.set("v", "<leader>l", "<cmd>LocateFile<cr>")
+

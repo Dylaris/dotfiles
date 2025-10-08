@@ -34,7 +34,7 @@ require("oil").setup({
 require("bufferline").setup{
     options = {
         themable = false,
-        separator_style = 'slope',
+        separator_style = 'slant',
         show_buffer_icons = true,
         show_buffer_close_icons = true,
     }
@@ -74,7 +74,7 @@ require("nvim-treesitter.configs").setup {
 require('lualine').setup{
 	options = {
 		icons_enabled = true,
-		theme = 'ayu',
+		theme = 'dracula',
 	},
 }
 
@@ -97,4 +97,8 @@ require('ayu').setup({
         ['@property'] = { fg = "#D0D0D0" },
         ['@type.builtin'] = { fg = "#F28779" }
     },
+})
+
+-- dracula
+require("dracula").setup({
 })

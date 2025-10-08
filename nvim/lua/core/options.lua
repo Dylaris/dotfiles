@@ -12,7 +12,7 @@ local function set_appearance()
     vim.opt.background = "dark"                 -- Set background to dark
     vim.opt.termguicolors = true                -- Enable true color support
     vim.opt.laststatus = 2                      -- Always show the status line
-    vim.cmd.colorscheme('ayu')
+    vim.cmd.colorscheme('dracula')
     vim.cmd("highlight CursorLine guibg=NONE")  -- Set background of cursorline
 end
 
@@ -54,9 +54,9 @@ end
 local function set_find_path()
     local paths = {
         "~/.config/nvim/**",
-        "~/project/personal/aris.h/**",
-        "~/project/personal/json.h/**",
-        "~/project/personal/pini.h/**"
+        "~/project/personal/aris/**",
+        "~/project/personal/json/**",
+        "~/project/personal/cini/**"
     }
 
     local path_str = ""
