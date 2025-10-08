@@ -35,3 +35,57 @@ vim.api.nvim_create_user_command("LocateFile", function()
         vim.cmd("wincmd p")
     end
 end, {})
+
+vim.api.nvim_create_user_command("RunWithStatus", function(cmd)
+    local current_win = vim.api.nvim_get_current_win()
+    local start_time = vim.fn.reltime()
+
+    vim.cmd("bot split")
+    vim.cmd("vsplit")
+    local left_win = vim.api.nvim_get_current_win()
+    vim.cmd("wincmd l")
+    local right_win = vim.api.nvim_get_current_win()
+
+    local info_buf = vim.api.nvim_create_buf(false, true)
+    vim.api.nvim_win_set_buf(left_win, info_buf)
+
+    local term_buf = vim.api.nvim_create_buf(false, true)
+    vim.api.nvim_win_set_buf(right_win, term_buf)
+    vim.api.nvim_buf_set_option(term_buf, 'modifiable', false)
+
+    local info_lines = {
+        "[INFO]",
+        "> Timestamp: " .. os.date("%Y-%m-%d %H:%M:%S"),
+        "> Work Dir:  " .. vim.fn.getcwd(),
+        "> Command:   " .. cmd.args,
+        ""
+    }
+
+    vim.fn.termopen(cmd.args, {
+        cwd = vim.fn.getcwd(),
+        on_exit = function(_, exit_code, _)
+            vim.schedule(function()
+                if not vim.api.nvim_buf_is_valid(info_buf) then return end
+
+                local end_time = vim.fn.reltime(start_time)
+                local execution_time = tonumber(vim.fn.reltimestr(end_time))
+
+                local status_text = exit_code == 0 and "success" or "failed"
+
+                local summary = {
+                    "",
+                    "[RESULT]",
+                    "> Status:    " .. status_text,
+                    "> Exit Code: " .. exit_code,
+                    "> Duration:  " .. tostring(execution_time) .. "s"
+                }
+
+                -- reset all lines in info_buf
+                vim.api.nvim_buf_set_lines(info_buf, 0, -1, false, info_lines)
+                vim.api.nvim_buf_set_lines(info_buf, -1, -1, false, summary)
+            end)
+        end
+    })
+
+    vim.api.nvim_set_current_win(current_win)
+end, { nargs = '+' })
