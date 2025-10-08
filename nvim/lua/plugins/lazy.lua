@@ -29,12 +29,12 @@ require("lazy").setup({
     },
 
     -- Async run command
-    -- {
-    --     "skywind3000/asyncrun.vim",
-    --     config = function()
-    --         vim.g.asyncrun_open = math.floor(vim.fn.winheight(0) / 2)
-    --     end
-    -- },
+    {
+        "skywind3000/asyncrun.vim",
+        config = function()
+            vim.g.asyncrun_open = math.floor(vim.fn.winheight(0) / 2)
+        end
+    },
 
     -- Buffer management
     {

@@ -17,4 +17,4 @@ vim.keymap.set("i", "<C-j>", function() ls.jump(-1) end, {silent = true})
 vim.keymap.set("n", "<leader>e", ":Oil --float<cr>")
 
 -- asyncrun
-vim.keymap.set("n", "<leader>r", ":RunWithStatus ")
+vim.keymap.set("n", "<leader>r", ":AsyncRun ")
