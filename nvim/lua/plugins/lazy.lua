@@ -16,9 +16,64 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
     -- Colorscheme
-    { "Mofiqul/dracula.nvim" }, -- sed -i '/italic = true/s/true/false/g' lua/dracula/groups.lua
-	{ "Shatur/neovim-ayu" },
-    { "EdenEast/nightfox.nvim" },
+    {
+        'olivercederborg/poimandres.nvim',
+        lazy = false,
+        priority = 1000,
+        config = function()
+            require('poimandres').setup{
+                disable_italics = true
+            }
+        end,
+        init = function()
+            vim.cmd.colorscheme('poimandres')
+            vim.api.nvim_set_hl(0, "Comment", {
+                fg = "#c0ff85",
+            })
+            vim.api.nvim_set_hl(0, "Keyword", {
+                -- fg = "#6486c9",
+                -- fg = "#85aeff",
+                fg = "#bb9af7",
+            })
+            vim.api.nvim_set_hl(0, "@keyword.return", {
+                link = "Keyword"
+            })
+            vim.api.nvim_set_hl(0, "Function", {
+                fg = "#f0f0f0",
+            })
+            vim.api.nvim_set_hl(0, "Type", {
+                fg = "#5fd7ff",
+            })
+        end
+    },
+
+    -- Fuzzy search
+    {
+        'nvim-telescope/telescope.nvim', tag = '0.1.8',
+        dependencies = { 'nvim-lua/plenary.nvim' }
+    },
+
+    -- Check keymap
+    {
+        "folke/which-key.nvim",
+        event = "VeryLazy",
+        opts = {},
+        keys = {
+            {
+                "<leader>?",
+                function()
+                    require("which-key").show({ global = false })
+                end,
+                desc = "Buffer Local Keymaps (which-key)",
+            },
+        },
+    },
+
+    -- Lualine
+    {
+        "nvim-lualine/lualine.nvim",
+        dependencies = { "nvim-mini/mini.icons" },
+    },
 
     -- Edit file like buffer
     {
@@ -26,21 +81,6 @@ require("lazy").setup({
         opts = {},
         dependencies = { { "nvim-mini/mini.icons", opts = {} } },
         lazy = false,
-    },
-
-    -- Async run command
-    {
-        "skywind3000/asyncrun.vim",
-        config = function()
-            vim.g.asyncrun_open = math.floor(vim.fn.winheight(0) / 2)
-        end
-    },
-
-    -- Buffer management
-    {
-        'akinsho/bufferline.nvim',
-        version = "*",
-        dependencies = "nvim-mini/mini.icons"
     },
 
     -- Quickly comment
@@ -57,59 +97,18 @@ require("lazy").setup({
         branch = 'master', lazy = false, build = ":TSUpdate"
     },
 
-    -- Lualine
-    {
-        "nvim-lualine/lualine.nvim",
-        dependencies = { "nvim-mini/mini.icons" },
-    },
-
-    -- No-Neck-Pain
-    { "shortcuts/no-neck-pain.nvim", version = "*" },
-
-    -- Lua Snippets
-    {
-        "L3MON4D3/LuaSnip",
-        -- follow latest release.
-        version = "v2.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
-        -- install jsregexp (optional!).
-        build = "make install_jsregexp",
-        dependencies = { "rafamadriz/friendly-snippets" },
-        config = function()
-            require("luasnip.loaders.from_vscode").lazy_load()
-            require("snippets.c_snippet")
-            require("snippets.lua_snippet")
-            require("snippets.php_snippet")
-            require("snippets.html_snippet")
-        end,
-    },
-
-    -- Cursor style
-    {
-        "sphamba/smear-cursor.nvim",
-        -- opts = {},
-    },
-
     -- Alignment
-	{
-		'Vonr/align.nvim',
-		branch = "v2",
-		lazy = true,
-		init = function()
+    {
+        'Vonr/align.nvim',
+        branch = "v2",
+        lazy = true,
+        init = function()
             local NS = { noremap = true, silent = true }
             -- Aligns to 1 character
             vim.keymap.set('x', 'aa',
                 function()
                     require'align'.align_to_char({
                         length = 1,
-                    })
-                end, NS)
-
-            -- Aligns to 2 characters with previews
-            vim.keymap.set('x', 'ad',
-                function()
-                    require'align'.align_to_char({
-                        preview = true,
-                        length = 2,
                     })
                 end, NS)
 
@@ -121,40 +120,8 @@ require("lazy").setup({
                         regex = false,
                     })
                 end, NS)
-
-            -- Aligns to a Vim regex with previews
-            vim.keymap.set('x', 'ar',
-                function()
-                    require'align'.align_to_string({
-                        preview = true,
-                        regex = true,
-                    })
-                end, NS)
-
-            -- Example gawip to align a paragraph to a string with previews
-            vim.keymap.set( 'n', 'gaw',
-                function()
-                    local a = require'align'
-                    a.operator(
-                        a.align_to_string,
-                        {
-                            regex = false,
-                            preview = true,
-                        }
-                    )
-                end, NS)
-
-            -- Example gaaip to align a paragraph to 1 character
-            vim.keymap.set('n', 'gaa',
-                function()
-                    local a = require'align'
-                    a.operator(a.align_to_char)
-                end, NS)
-		end
-	},
-
-    -- Rainbow paren
-    -- { "hiphish/rainbow-delimiters.nvim" },
+        end
+    },
 
     -- Smooth scroll
     {

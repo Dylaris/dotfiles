@@ -1,20 +1,15 @@
--- space bar leader key
+-- use space as leader key
 vim.g.mapleader = " "
-
--- buffline
-vim.keymap.set('n', '<leader>bo', '<cmd>BufferLineCloseLeft<CR><Cmd>BufferLineCloseRight<cr>', { desc = 'Close other buffers' })
 
 -- nvim-comment
 vim.keymap.set({"n", "v"}, "gc", ":CommentToggle<cr>")
 
--- luasnip
-local ls = require("luasnip")
-vim.keymap.set("i", "<C-k>", function() ls.expand() end, {silent = true})
-vim.keymap.set("i", "<C-l>", function() ls.jump( 1) end, {silent = true})
-vim.keymap.set("i", "<C-j>", function() ls.jump(-1) end, {silent = true})
-
 -- oil
 vim.keymap.set("n", "<leader>e", ":Oil --float<cr>")
 
--- asyncrun
-vim.keymap.set("n", "<leader>r", ":AsyncRun ")
+-- telescope
+local builtin = require('telescope.builtin')
+vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'Telescope find files' })
+vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = 'Telescope live grep' })
+vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = 'Telescope buffers' })
+vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'Telescope help tags' })

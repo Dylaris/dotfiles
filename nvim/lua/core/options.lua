@@ -12,7 +12,6 @@ local function set_appearance()
     vim.opt.background = "dark"                 -- Set background to dark
     vim.opt.termguicolors = true                -- Enable true color support
     vim.opt.laststatus = 2                      -- Always show the status line
-    vim.cmd.colorscheme('dracula')
     vim.cmd("highlight CursorLine guibg=NONE")  -- Set background of cursorline
 end
 
@@ -39,7 +38,6 @@ local function set_search_settings()
     vim.opt.ignorecase = true                   -- Ignore case while searching
     vim.opt.smartcase = true                    -- Enable smart case search (case-sensitive if uppercase is used)
     vim.opt.showmatch = true                    -- Highlight matching parentheses
-    vim.opt.matchtime = 4                       -- Set the time for bracket matching highlight
 end
 
 -- File management settings
@@ -77,6 +75,9 @@ end
 
 -- Other settings
 local function set_other_settings()
+    vim.opt.formatoptions:remove({              -- Disable auto comment
+        "c", "r", "o", "O"
+    })
     vim.opt.belloff = "all"                     -- Disable bell
     vim.opt.updatetime = 300                    -- Set the update time for CursorHold events
     vim.opt.mouse = "a"                         -- Enable mouse support in all modes
