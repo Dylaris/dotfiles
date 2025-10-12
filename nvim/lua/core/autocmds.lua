@@ -20,3 +20,11 @@ vim.api.nvim_create_autocmd("BufWritePre", {
         vim.api.nvim_win_set_cursor(0, cursor_pos)
     end
 })
+
+-- Disable auto comment
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = "*",
+    callback = function()
+        vim.opt.formatoptions:remove({"c", "r", "o", "O"})
+    end,
+})

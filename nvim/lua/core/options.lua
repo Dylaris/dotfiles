@@ -75,9 +75,6 @@ end
 
 -- Other settings
 local function set_other_settings()
-    vim.opt.formatoptions:remove({              -- Disable auto comment
-        "c", "r", "o", "O"
-    })
     vim.opt.belloff = "all"                     -- Disable bell
     vim.opt.updatetime = 300                    -- Set the update time for CursorHold events
     vim.opt.mouse = "a"                         -- Enable mouse support in all modes

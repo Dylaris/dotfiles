@@ -31,7 +31,7 @@ function create_temp_buffer()
     return buf
 end
 
-function close_all_other_buffer()
+function close_other_buffers()
     local current_buf = vim.api.nvim_get_current_buf()
     for _, buf in ipairs(vim.api.nvim_list_bufs()) do
         if buf ~= current_buf and vim.api.nvim_buf_is_loaded(buf) then

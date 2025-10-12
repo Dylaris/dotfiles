@@ -77,4 +77,3 @@ require('lualine').setup{
 		theme = 'poimandres',
 	},
 }
-

@@ -31,15 +31,16 @@ require("lazy").setup({
                 fg = "#c0ff85",
             })
             vim.api.nvim_set_hl(0, "Keyword", {
-                -- fg = "#6486c9",
-                -- fg = "#85aeff",
                 fg = "#bb9af7",
             })
             vim.api.nvim_set_hl(0, "@keyword.return", {
                 link = "Keyword"
             })
+            vim.api.nvim_set_hl(0, "@keyword.function", {
+                link = "Keyword"
+            })
             vim.api.nvim_set_hl(0, "Function", {
-                fg = "#f0f0f0",
+                fg = vim.api.nvim_get_hl_by_name("@function.call", true).foreground
             })
             vim.api.nvim_set_hl(0, "Type", {
                 fg = "#5fd7ff",
@@ -50,7 +51,7 @@ require("lazy").setup({
     -- Fuzzy search
     {
         'nvim-telescope/telescope.nvim', tag = '0.1.8',
-        dependencies = { 'nvim-lua/plenary.nvim' }
+        dependencies = { 'nvim-lua/plenary.nvim' },
     },
 
     -- Check keymap
@@ -67,6 +68,17 @@ require("lazy").setup({
                 desc = "Buffer Local Keymaps (which-key)",
             },
         },
+    },
+
+    -- Exacyly jump
+    {
+        "ggandor/leap.nvim",
+        config = function()
+            require('leap').add_default_mappings()
+    vim.keymap.set({'n', 'x', 'o'}, 's', '<Plug>(leap-forward)')
+    vim.keymap.set({'n', 'x', 'o'}, 'S', '<Plug>(leap-backward)')
+    vim.keymap.set({'n', 'x', 'o'}, 'gs', '<Plug>(leap-from-window)')
+        end,
     },
 
     -- Lualine
