@@ -74,6 +74,7 @@ require('neoscroll').setup({
 require('lualine').setup{
 	options = {
 		icons_enabled = true,
-		theme = 'poimandres',
+		theme = 'auto',
 	},
 }
+

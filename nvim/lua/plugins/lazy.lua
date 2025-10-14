@@ -17,36 +17,18 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
     -- Colorscheme
     {
-        'olivercederborg/poimandres.nvim',
+        'sainnhe/everforest',
         lazy = false,
         priority = 1000,
         config = function()
-            require('poimandres').setup{
-                disable_italics = true
-            }
-        end,
-        init = function()
-            vim.cmd.colorscheme('poimandres')
-            vim.api.nvim_set_hl(0, "Comment", {
-                fg = "#c0ff85",
-            })
-            vim.api.nvim_set_hl(0, "Keyword", {
-                fg = "#bb9af7",
-            })
-            vim.api.nvim_set_hl(0, "@keyword.return", {
-                link = "Keyword"
-            })
-            vim.api.nvim_set_hl(0, "@keyword.function", {
-                link = "Keyword"
-            })
-            vim.api.nvim_set_hl(0, "Function", {
-                fg = vim.api.nvim_get_hl_by_name("@function.call", true).foreground
-            })
-            vim.api.nvim_set_hl(0, "Type", {
-                fg = "#5fd7ff",
-            })
+            -- everforest
+            vim.g.everforest_background = 'soft'
+            vim.g.everforest_enable_italic = 0
+            vim.g.everforest_disable_italic_comment = 1
+            vim.g.everforest_cursor = "yellow"
         end
     },
+    { "wadackel/vim-dogrun" },
 
     -- Fuzzy search
     {
@@ -71,15 +53,7 @@ require("lazy").setup({
     },
 
     -- Exacyly jump
-    {
-        "ggandor/leap.nvim",
-        config = function()
-            require('leap').add_default_mappings()
-    vim.keymap.set({'n', 'x', 'o'}, 's', '<Plug>(leap-forward)')
-    vim.keymap.set({'n', 'x', 'o'}, 'S', '<Plug>(leap-backward)')
-    vim.keymap.set({'n', 'x', 'o'}, 'gs', '<Plug>(leap-from-window)')
-        end,
-    },
+    { "ggandor/leap.nvim", },
 
     -- Lualine
     {
