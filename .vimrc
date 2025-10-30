@@ -1,10 +1,10 @@
+"==============================================
+" Plugin Configuration
+"==============================================
 if !exists('g:load_plugins')
     let g:load_plugins = 0
 endif
 
-"==============================================
-" Plugin Configuration
-"==============================================
 if g:load_plugins
     if has('win32') || has('win64')
         " Windows system
@@ -15,89 +15,64 @@ if g:load_plugins
     endif
 
     call plug#begin(s:plug_dir)
-        " UI Enhancements
-        Plug 'itchyny/lightline.vim'
-        Plug 'preservim/nerdtree'
-
-        " Utilities
-        Plug 'skywind3000/vim-terminal-help'
+        " Plug 'something'
     call plug#end()
-
-    "----------------------------------------------
-    " NetRW (Built-in File Explorer)
-    "----------------------------------------------
-    let g:netrw_altv = 1                " Open splits to the right
-    let g:netrw_alto = 1                " Open splits to the bottom
-    let g:netrw_winsize = 75            " Explorer width (25% of window)
-
-    "----------------------------------------------
-    " vim-terminal-help
-    "----------------------------------------------
-    let g:terminal_cwd = 2              " Open terminal in current file's directory
-    " let g:terminal_shell = "wsl"        " Use WSL as default shell
-    let g:terminal_shell = "powershell" " Use PowerShell as default shell
-    let g:terminal_height = 15          " Terminal window height
-
-    "----------------------------------------------
-    " lightline.vim (Status Line)
-    "----------------------------------------------
-    let g:lightline = {
-          \ 'colorscheme': 'PaperColor',
-          \ 'active': {
-          \   'left': [
-          \     ['mode', 'paste'],
-          \     ['readonly', 'filename', 'modified']
-          \   ],
-          \   'right': [
-          \     ['lineinfo'],
-          \     ['percent'],
-          \     ['fileformat', 'fileencoding', 'filetype']
-          \   ]
-          \ },
-          \ 'component': {
-          \   'charvaluehex': '0x%B',
-          \   'helloworld': 'Hello, World!'
-          \ },
-          \ }
 endif
 
 "==============================================
-" Basic Settings
+" GUI-specific Settings
 "==============================================
-" Disable Vi compatibility
-set nocompatible
+if has('gui_running')
+    " Language settings
+    let $LANG = 'en_US'
+    set langmenu=en_US
+    source $VIMRUNTIME/delmenu.vim
+    source $VIMRUNTIME/menu.vim
 
-" Interface & Display
-syntax on
-filetype on
-filetype indent on
+    " Workspace setup
+    let $VIM_WORKSPACE = 'D:/Vim/workspace'
+    let $LINUX_HOME = '\\wsl.localhost\Ubuntu-22.04\home\dylaris'
+    cd $VIM_WORKSPACE
+    set cdpath=,,;$LINUX_HOME
+
+    " GUI options
+    set guioptions-=m               " Hide menu bar
+    set guioptions-=T               " Hide tool bar
+    set guioptions-=r               " Hide scroll bar
+
+    " Toggle GUI elements with F2
+    map <silent> <F2> :if &guioptions =~# 'T' <Bar>
+            \set guioptions-=T <Bar>
+            \set guioptions-=m <Bar>
+            \set guioptions-=r <Bar>
+        \else <Bar>
+            \set guioptions+=T <Bar>
+            \set guioptions+=m <Bar>
+            \set guioptions+=r <Bar>
+        \endif<CR>
+endif
+
+"==============================================
+" Settings
+"==============================================
+" Basic setttings configuration
+set nocompatible                    " Disable vi compatibility mode
+syntax on                           " Enable syntax highlighting
+filetype on                         " Enable filetype detection
+filetype indent on                  " Enable auto indentation
+set fileformats=unix,dos            " Handle both Unix and DOS line endings
+
+" Appearance and interface settings
+set background=dark
 set termguicolors                   " Enable true color support
 colorscheme darkblue
-set nocursorline                    " No highlight current line
-set background=dark
-" set guifont=Fixedsys
 set laststatus=2                    " Always show status line
-set showmode                        " Use lightline instead of default mode indicator
-set belloff=all                     " Disable all beeps
-set guicursor=n-v-c-i:block         " Cursor style
 
-" Line Numbers
-set nonumber                        " No show absolute line numbers
-set norelativenumber                " No show relative line numbers
+" Clipboard and autocompletion settings
+set clipboard=unnamedplus           " Set clipboard to use the system clipboard
+set complete+=d                     " Include dictionary completion
 
-" Search & Highlighting
-set hls                             " Highlight search matches
-set ignorecase                      " Case insensitive search
-set smartcase                       " Smart case sensitivity
-
-" File Handling
-set fileformats=unix,dos            " Handle both Unix and DOS line endings
-set nobackup                        " Disable backup files
-set noswapfile                      " Disable swap files
-set nowritebackup                   " Disable write backup
-set noundofile                      " Disable undo files
-
-" Indentation & Tabs
+" Tab and indentation settings
 set tabstop=4                       " Visual spaces per tab
 set softtabstop=4                   " Spaces in edit operation
 set expandtab                       " Convert tabs to spaces
@@ -106,22 +81,30 @@ set autoindent                      " Enable auto indentation
 set cindent                         " C indent handling
 set smarttab                        " Smart tab handling
 
-" Matching & Navigation
+" Search settings
+set hls                             " Highlight search matches
+set ignorecase                      " Case insensitive search
+set smartcase                       " Smart case sensitivity
 set showmatch                       " Highlight matching brackets
-set matchtime=4                     " Matching highlight duration
 
-" Clipboard Integration
-set clipboard=unnamedplus           " Use system clipboard by default
+" File management settings
+set nobackup                        " Disable backup files
+set noswapfile                      " Disable swap files
+set nowritebackup                   " Disable write backup
+set noundofile                      " Disable undo files
 
-" Completion
-set complete+=d                     " Include dictionary completion
+" Search path for builtin-command find
+set path=~/project/personal/aris/**,~/project/personal/json/**
 
-" Mouse Support
+" Line Numbers
+set number                          " Show absolute line numbers
+set relativenumber                  " Show relative line numbers
+set nocursorline                    " No highlight current line
+
+" Other settings
+set belloff=all                     " Disable bell
 set mouse=a                         " Enable mouse in all modes
-
-" Performance
 set updatetime=300                  " Shorter update time for better responsiveness
-
 
 "==============================================
 " GUI-specific Settings
@@ -153,28 +136,20 @@ if has('gui_running')
         \endif<CR>
 endif
 
-
 "==============================================
 " Autocommands
 "==============================================
-" Disable automatic comments on new line
-autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
-
-" Set FASM syntax for assembly files
-autocmd BufReadPre *.asm let g:asmsyntax = "fasm"
-
 " Set filetype=c for C header files
 autocmd BufNewFile,BufRead *.h set filetype=c
-
-" Set PHP indentation settings
-autocmd FileType php setlocal indentexpr= autoindent smartindent
-
+" Set filetype=fasm for asm/inc file
+autocmd BufReadPre *.asm,*.inc let g:asmsyntax = "fasm"
+" Disable automatic comments on new line
+autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 " Automatically remove trailing whitespace on save
 autocmd BufWritePre * :%s/\s\+$//e
 
-
 "==============================================
-" Custom Functions
+" Util Functions
 "==============================================
 " Reverse selected lines
 function! ReverseLines()
@@ -182,138 +157,86 @@ function! ReverseLines()
     call setline("'<", reverse(lines))
 endfunction
 
-
 "==============================================
 " Key Mappings
 "==============================================
 let mapleader = "\<Space>"          " Leader key
 
 "----------------------------------------------
-" Normal Mode
+" core
 "----------------------------------------------
-""""""""""""""""""""""""""""""
-" UI Toggles
-""""""""""""""""""""""""""""""
-
-" Clear search highlights
-nnoremap <Leader>nh :nohls<CR>
-if g:load_plugins
-    " Toggle file explorer
-    nnoremap <Leader>e :NERDTreeToggle .<CR>
-endif
-
-""""""""""""""""""""""""""""""
-" Buffer Management
-""""""""""""""""""""""""""""""
-
-" Edit vimrc
-nnoremap <Leader>br :e! $MYVIMRC<CR>
-" Close current buffer
-nnoremap <Leader>bd :bd!<CR>
-" Switch to last buffer
-nnoremap <Leader>bv :b#<CR>
-" List and switch buffers
-nnoremap <Leader>bs :ls<CR>:b<Space>
-
-""""""""""""""""""""""""""""""
-" Window Navigation
-""""""""""""""""""""""""""""""
-
-" Move to left window
-nnoremap <A-h> <C-w>h
-" Move to right window
-nnoremap <A-l> <C-w>l
-" Move to lower window
-nnoremap <A-j> <C-w>j
-" Move to upper window
-nnoremap <A-k> <C-w>k
-
-""""""""""""""""""""""""""""""
-" File Operations
-""""""""""""""""""""""""""""""
-
+" Exit insert mode
+inoremap jk <Esc>
+" Run command
+cnoremap jk <Esc>
+" Exit terminal mode
+tnoremap <Esc> <C-\><C-n>
 " Save file
-nnoremap <Leader>w :w<CR>
-" Quit
+nnoremap <Leader>s :w<CR>
+" Quit file
 nnoremap <Leader>q :q<CR>
+" Clear search highlight
+nnoremap <Leader>nh :nohl<CR>
+" Run macro 'a'
+vnoremap <Tab> :normal @a<CR>
+" Paste from system clipboard
+nnoremap <Leader>p "+p
+" Yank to system clipboard
+vnoremap <Leader>y "+y
 
-""""""""""""""""""""""""""""""
-" Line Navigation
-""""""""""""""""""""""""""""""
-
-" Start of line
-nnoremap <C-h> ^
-" End of line
-nnoremap <C-l> $
-" Next paragraph
-nnoremap <C-j> }
-" Previous paragraph
-nnoremap <C-k> {
-
-""""""""""""""""""""""""""""""
-" Editing
-""""""""""""""""""""""""""""""
-
-" Break line at cursor
+"----------------------------------------------
+" line operations
+"----------------------------------------------
+" Split line
 nnoremap <Enter> i<CR><Esc>
 " Delete to line start
 nnoremap du d^
 
-""""""""""""""""""""""""""""""
-" Terminal
-""""""""""""""""""""""""""""""
-
-if g:load_plugins
-    " Toggle terminal
-    nnoremap <Leader>bt :call TerminalToggle()<CR>
-endif
-
-""""""""""""""""""""""""""""""
-" Clipboard
-""""""""""""""""""""""""""""""
-
-" Paste from default register
-nnoremap p ""p
-" Yank to default register
-nnoremap y ""y
-" Paste from system clipboard
-nnoremap <Leader>p "+p
-" Yank to system clipboard
-nnoremap <Leader>y "+y
+"----------------------------------------------
+" buffer operations
+"----------------------------------------------
+" Edit vimrc
+nnoremap <Leader>br :e! $MYVIMRC<CR>
+" Close buffer
+nnoremap <Leader>bd :bd<CR>
+" Force close buffer
+nnoremap <Leader>bD :bd!<CR>
+" Unload buffer
+nnoremap <Leader>bu :bun<CR>
+" Switch to last visited buffer
+nnoremap <Leader>bv :b#<CR>
+" Search selected text
+vnoremap <Leader>bf y/<C-r>0<CR>
+" Show file path
+" nnoremap <Leader>bp :echo expand('%:p:h')<CR>
 
 "----------------------------------------------
-" Visual Mode
+" window operations
 "----------------------------------------------
-" Start of line
-xnoremap <C-h> ^
-" End of line (exclude newline)
-xnoremap <C-l> $h
-" Next paragraph
-xnoremap <C-j> }
-" Previous paragraph
-xnoremap <C-k> {
-
-" Search for selected text
-xnoremap <Leader>f y/<C-r>"
-" Apply macro 'a'
-xnoremap <Tab> :normal @a<CR>
+" Horizontal split window
+nnoremap <Leader>wh :split<CR>
+" Vertical split window
+nnoremap <Leader>wv :vsplit<CR>
+" Close window
+nnoremap <Leader>wd :close<CR>
+" Close other windows
+nnoremap <Leader>wo :only<CR>
 
 "----------------------------------------------
-" Insert Mode
+" navigation
 "----------------------------------------------
-" Escape insert mode
-inoremap jk <Esc>
-
-"----------------------------------------------
-" Command Mode
-"----------------------------------------------
-" Exit command mode
-cnoremap jj <C-c>
-" Execute command
-cnoremap jk <Esc>
-
-"----------------------------------------------
-" Terminal Mode
-"----------------------------------------------
-" Exit terminal mode
-tnoremap <Esc> <C-\><C-n>
+" Go to left window
+nnoremap <A-h> <C-w>h
+" Go to right window
+nnoremap <A-l> <C-w>l
+" Go to bottom window
+nnoremap <A-j> <C-w>j
+" Go to top window
+nnoremap <A-k> <C-w>k
+" Go to line start
+nnoremap <C-h> ^
+vnoremap <C-h> ^
+" Go to line end
+nnoremap <C-l> $
+" Go to line end (no newline)
+vnoremap <C-l> $h

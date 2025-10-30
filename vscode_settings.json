@@ -13,17 +13,13 @@
   ],
   "vim.commandLineModeKeyBindings": [
     {
-      "before": ["j", "j"],
-      "after": ["<Esc>"]
-    },
-    {
       "before": ["j", "k"],
       "after": ["<cr>"]
     }
   ],
   "vim.normalModeKeyBindingsNonRecursive": [
     {
-      "before": ["<leader>", "w"],
+      "before": ["<leader>", "s"],
       "commands": [":w"]
     },
     {
@@ -31,20 +27,12 @@
       "commands": [":q"]
     },
     {
-      "before": ["<leader>", "n"],
+      "before": ["<leader>", "n", "h"],
       "commands": [":nohl"]
     },
     {
       "before": ["<enter>"],
       "after": ["i", "<cr>", "<esc>"]
-    },
-    {
-      "before": ["C-j"],
-      "after": ["}"]
-    },
-    {
-      "before": ["C-k"],
-      "after": ["{"]
     },
     {
       "before": ["C-h"],
@@ -56,14 +44,6 @@
     }
   ],
   "vim.visualModeKeyBindings": [
-    {
-      "before": ["C-j"],
-      "after": ["}"]
-    },
-    {
-      "before": ["C-k"],
-      "after": ["{"]
-    },
     {
       "before": ["C-h"],
       "after": ["^"]
@@ -80,9 +60,6 @@
   "extensions.experimental.affinity": {
     "vscodevim.vim": 1
   },
-
-  "workbench.colorTheme": "Ayu Mirage Bordered",
-  "workbench.iconTheme": "material-icon-theme",
 
   "extensions.ignoreRecommendations": true,
   "editor.smoothScrolling": true,
@@ -119,7 +96,7 @@
       ],
       "icon": "terminal-cmd"
     }
-  }, 
+  },
   "terminal.integrated.defaultProfile.windows": "Cmder",
   "terminal.integrated.fontWeightBold": "normal"
 }
