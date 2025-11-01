@@ -16,19 +16,8 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
     -- Colorscheme
-    {
-        'sainnhe/everforest',
-        lazy = false,
-        priority = 1000,
-        config = function()
-            -- everforest
-            vim.g.everforest_background = 'soft'
-            vim.g.everforest_enable_italic = 0
-            vim.g.everforest_disable_italic_comment = 1
-            vim.g.everforest_cursor = "yellow"
-        end
-    },
     { "wadackel/vim-dogrun" },
+    { "EdenEast/nightfox.nvim" },
 
     -- Fuzzy search
     {

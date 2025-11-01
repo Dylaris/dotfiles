@@ -78,3 +78,21 @@ require('lualine').setup{
 	},
 }
 
+-- nightfox
+require('nightfox').setup({
+    options = {
+        styles = {
+            comments = "NONE",
+            keywords = "bold",
+            types    = "bold",
+        }
+    },
+    groups = {
+        all = {
+            ["@variable.parameter"] = { fg = "#EBCB8B" , style = "NONE" },
+            ["@field"] = { fg = "#EBCB8B" },
+            ["@property"] = { fg = "#EBCB8B" },
+            ["@variable.member"] = { fg = "#EBCB8B" },
+        },
+    },
+})

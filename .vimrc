@@ -14,9 +14,20 @@ if g:load_plugins
         let s:plug_dir = '~/.vim/plugged'
     endif
 
+    " Plug install
     call plug#begin(s:plug_dir)
-        " Plug 'something'
+        Plug 'NLKNguyen/papercolor-theme'
+        Plug 'junegunn/vim-easy-align'
+        Plug 'easymotion/vim-easymotion'
+        Plug 'tpope/vim-commentary'
     call plug#end()
+
+    " Plug setting
+    " netrw
+    let g:netrw_banner       = 0  " Hide banner (the top directory info)
+    let g:netrw_liststyle    = 3  " Tree-style listing
+    let g:netrw_browse_split = 4  " Open file in previous window
+    let g:netrw_winsize      = 25 " Set window width to 25%
 endif
 
 "==============================================
@@ -31,9 +42,8 @@ if has('gui_running')
 
     " Workspace setup
     let $VIM_WORKSPACE = 'D:/Vim/workspace'
-    let $LINUX_HOME = '\\wsl.localhost\Ubuntu-22.04\home\dylaris'
     cd $VIM_WORKSPACE
-    set cdpath=,,;$LINUX_HOME
+    set cdpath=,,
 
     " GUI options
     set guioptions-=m               " Hide menu bar
@@ -65,8 +75,9 @@ set fileformats=unix,dos            " Handle both Unix and DOS line endings
 " Appearance and interface settings
 set background=dark
 set termguicolors                   " Enable true color support
-colorscheme darkblue
+colorscheme PaperColor
 set laststatus=2                    " Always show status line
+set guifont=Inconsolata_LGC_Nerd_Font:h9:b:cANSI:qDRAFT
 
 " Clipboard and autocompletion settings
 set clipboard=unnamedplus           " Set clipboard to use the system clipboard
@@ -107,36 +118,6 @@ set mouse=a                         " Enable mouse in all modes
 set updatetime=300                  " Shorter update time for better responsiveness
 
 "==============================================
-" GUI-specific Settings
-"==============================================
-if has('gui_running')
-    " Language settings
-    let $LANG = 'en_US'
-    set langmenu=en_US
-    source $VIMRUNTIME/delmenu.vim
-    source $VIMRUNTIME/menu.vim
-
-    " Workspace setup
-    let $VIM_WORKSPACE = 'D:/Vim/workspace'
-    let $LINUX_HOME = '\\wsl.localhost\Ubuntu-22.04\home\dylaris'
-    cd $VIM_WORKSPACE
-    set cdpath=,,;$LINUX_HOME
-
-    " GUI options
-    set guioptions-=m               " Hide menu bar
-    set guioptions-=T               " Hide toolbar
-
-    " Toggle GUI elements with F2
-    map <silent> <F2> :if &guioptions =~# 'T' <Bar>
-            \set guioptions-=T <Bar>
-            \set guioptions-=m <Bar>
-        \else <Bar>
-            \set guioptions+=T <Bar>
-            \set guioptions+=m <Bar>
-        \endif<CR>
-endif
-
-"==============================================
 " Autocommands
 "==============================================
 " Set filetype=c for C header files
@@ -151,10 +132,33 @@ autocmd BufWritePre * :%s/\s\+$//e
 "==============================================
 " Util Functions
 "==============================================
-" Reverse selected lines
 function! ReverseLines()
     let lines = getline("'<", "'>")
     call setline("'<", reverse(lines))
+endfunction
+
+function! CreateTempBuffer()
+    botright vnew
+    let buf = bufnr('%')
+    setlocal buftype=nofile
+    setlocal bufhidden=wipe
+    setlocal noswapfile
+    setlocal filetype=text
+    call setline(1, [
+        \ 'This is a temporary buffer...',
+        \ 'You can write anything here...',
+        \ ''
+    \ ])
+    return buf
+endfunction
+
+function! CloseOtherBuffers()
+    let current_buf = bufnr('%')
+    for buf in getbufinfo({'buflisted': 1})
+        if buf.bufnr != current_buf && buf.loaded
+            execute 'bdelete' buf.bufnr
+        endif
+    endfor
 endfunction
 
 "==============================================
@@ -183,6 +187,8 @@ vnoremap <Tab> :normal @a<CR>
 nnoremap <Leader>p "+p
 " Yank to system clipboard
 vnoremap <Leader>y "+y
+" Open file explorer
+nnoremap <Leader>e :Lexplore<CR>
 
 "----------------------------------------------
 " line operations
@@ -191,10 +197,16 @@ vnoremap <Leader>y "+y
 nnoremap <Enter> i<CR><Esc>
 " Delete to line start
 nnoremap du d^
+" Reverse selected lines
+vnoremap <leader>rl :call ReverseLines()<CR>
 
 "----------------------------------------------
 " buffer operations
 "----------------------------------------------
+" Close other buffers
+nnoremap <Leader>bo :call CloseOtherBuffers()<CR>
+" Create a tmp buffer
+nnoremap <Leader>bt :call CreateTempBuffer()<CR>
 " Edit vimrc
 nnoremap <Leader>br :e! $MYVIMRC<CR>
 " Close buffer
@@ -208,7 +220,7 @@ nnoremap <Leader>bv :b#<CR>
 " Search selected text
 vnoremap <Leader>bf y/<C-r>0<CR>
 " Show file path
-" nnoremap <Leader>bp :echo expand('%:p:h')<CR>
+nnoremap <Leader>bp :echo expand('%:p')<CR>
 
 "----------------------------------------------
 " window operations
@@ -240,3 +252,14 @@ vnoremap <C-h> ^
 nnoremap <C-l> $
 " Go to line end (no newline)
 vnoremap <C-l> $h
+" s{char}{char} to move to {char}{char}
+nnoremap gs <Plug>(easymotion-overwin-f2)
+
+"----------------------------------------------
+" alignment
+"----------------------------------------------
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+vnoremap ga <Plug>(EasyAlign)
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nnoremap ga <Plug>(EasyAlign)
+
