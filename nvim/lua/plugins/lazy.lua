@@ -16,8 +16,16 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
     -- Colorscheme
-    { "wadackel/vim-dogrun" },
     { "EdenEast/nightfox.nvim" },
+    { "pineapplegiant/spaceduck" },
+    { "rebelot/kanagawa.nvim" },
+    {
+        "folke/tokyonight.nvim",
+        lazy = false,
+        priority = 1000,
+        opts = {},
+    },
+    { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
 
     -- Fuzzy search
     {
@@ -43,12 +51,6 @@ require("lazy").setup({
 
     -- Exacyly jump
     { "ggandor/leap.nvim", },
-
-    -- Lualine
-    {
-        "nvim-lualine/lualine.nvim",
-        dependencies = { "nvim-mini/mini.icons" },
-    },
 
     -- Edit file like buffer
     {

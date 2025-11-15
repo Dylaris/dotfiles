@@ -9,7 +9,6 @@ vim.keymap.set("n", "<leader>s", ":w<cr>", {desc = "Save file"})
 vim.keymap.set("n", "<leader>q", ":q<cr>", {desc = "Quit file"})
 vim.keymap.set("n", "<leader>nh", ":nohl<cr>", {desc = "Clear search highlight"})
 vim.keymap.set("v", "<tab>", ":normal @a<cr>", {desc = "Run macro 'a'"})
-vim.keymap.set("v", "<leader>lf", "<cmd>LocateFile<cr>", {desc = "Open selected file in split window"})
 
 -- line operations
 vim.keymap.set("n", "<enter>", "i<cr><esc>", {desc = "Split line"})
@@ -39,3 +38,4 @@ vim.keymap.set("n", "<A-k>", "<C-w>k", {desc = "Go to top window"})
 vim.keymap.set({"n", "v"}, "<C-h>", "^", {desc = "Go to line start"})
 vim.keymap.set("n", "<C-l>", "$", {desc = "Go to line end"})
 vim.keymap.set("v", "<C-l>", "$h", {desc = "Go to line end (no newline)"})
+vim.keymap.set("v", "<cr>", "<cmd>JumpToError<cr>", {desc = "Open error position in split window"})

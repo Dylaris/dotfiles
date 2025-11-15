@@ -1,22 +1,9 @@
--- open the selected file path in new window
-vim.api.nvim_create_user_command("LocateFile", function()
-    local current_buf = vim.api.nvim_get_current_buf()
-    local is_terminal = vim.bo[current_buf].buftype == "terminal"
-
-    local dir_path = is_terminal and vim.fn.getcwd() or vim.fn.expand("%:p:h")
-    local relative_file_path = get_visual_selection()
-    -- remove some extra useless characters
-    relative_file_path = relative_file_path:gsub("^%s*(.-)%s*$", "%1")
-    relative_file_path = relative_file_path:gsub("[\r\n]+", "")
-
-    if relative_file_path then
-        local file_path = dir_path .. "/" .. relative_file_path
-        -- check if file exists
-        if vim.fn.filereadable(file_path) == 0 then
-            print("file: '" .. file_path .. "' not exists")
-            return
-        end
-        vim.cmd("bot split " .. vim.fn.fnameescape(file_path))
-        vim.cmd("wincmd p")
+-- open error position in new window
+vim.api.nvim_create_user_command("JumpToError", function()
+    local ok, report = parse_error_report()
+    if ok then
+        open_file_in_bottom_split(false, report.file, report.row, report.col)
+    else
+        print(report)
     end
 end, {})

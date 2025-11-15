@@ -39,3 +39,42 @@ function close_other_buffers()
         end
     end
 end
+
+function parse_error_report()
+    local selection = get_visual_selection()
+    local patterns = {
+        "(.-):(%d+):(%d+)",                 -- main.c:1:1
+        "(.-)%((%d+),(%d+)%)",              -- main.c(1,1)
+        "(.-):(%d+)",                       -- main.java:1
+        'File%s*"([^"]+)",%s*line%s*(%d+)', -- File "main.py", line 1
+    }
+    for _, pattern in ipairs(patterns) do
+        local matches = {selection:match(pattern)}
+        if matches[1] then
+            local result = {
+                file = matches[1],
+                row  = tonumber(matches[2]) or 1,
+                col  = tonumber(matches[3]) or 1
+            }
+            return true, result
+        end
+    end
+    return false, "no matching error format found"
+end
+
+function open_file_in_bottom_split(back, file_path, row, col)
+    -- remove some extra useless characters
+    file_path = file_path:gsub("^%s*(.-)%s*$", "%1"):gsub("[\r\n]+", "")
+
+    -- check if file exists
+    if vim.fn.filereadable(file_path) == 0 then
+        print("file: '" .. file_path .. "' not exists (pwd: " .. vim.fn.getcwd() .. ")")
+        return false
+    end
+
+    vim.cmd("bot split " .. vim.fn.fnameescape(file_path))
+    if row then vim.api.nvim_win_set_cursor(0, {row, (col or 1) - 1}) end
+    if back then vim.cmd("wincmd p") end
+
+    return true
+end

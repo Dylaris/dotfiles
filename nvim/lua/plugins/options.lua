@@ -70,14 +70,6 @@ require('neoscroll').setup({
     },
 })
 
--- lualine
-require('lualine').setup{
-	options = {
-		icons_enabled = true,
-		theme = 'auto',
-	},
-}
-
 -- nightfox
 require('nightfox').setup({
     options = {
@@ -89,10 +81,41 @@ require('nightfox').setup({
     },
     groups = {
         all = {
-            ["@variable.parameter"] = { fg = "#EBCB8B" , style = "NONE" },
-            ["@field"] = { fg = "#EBCB8B" },
-            ["@property"] = { fg = "#EBCB8B" },
-            ["@variable.member"] = { fg = "#EBCB8B" },
+            ["@variable.parameter"] = { fg = "#bdbdbd" , style = "NONE" },
+            -- ["@field"] = { fg = "#D1C4E9" },
+            -- ["@property"] = { fg = "#D1C4E9" },
+            -- ["@variable.member"] = { fg = "#D1C4E9" },
         },
     },
+})
+
+-- kanagawa
+require("kanagawa").setup{
+    commentStyle = { italic = false },
+    keywordStyle = { italic = false },
+    overrides = function(colors)
+        return {
+            LineNr = { bg = "none", fg = colors.theme.ui.nontext },
+            CursorLineNr = { bg = "none", fg = colors.theme.ui.special, bold = true },
+            SignColumn = { bg = "none" },
+            FoldColumn = { bg = "none" },
+            ["@variable.builtin"] = { italic = false },
+        }
+    end,
+}
+
+-- tokyonight
+require("tokyonight").setup{
+    style = "night", -- `moon`, `storm`, `night`, `day`
+    styles = {
+        comments = { italic = false },
+        keywords = { italic = false },
+    },
+}
+
+-- catppuccin
+require("catppuccin").setup({
+    flavour = "mocha", -- latte, frappe, macchiato, mocha
+    no_italic = true,
+    show_end_of_buffer = true,
 })

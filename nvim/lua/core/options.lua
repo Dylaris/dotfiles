@@ -11,8 +11,8 @@ end
 local function set_appearance()
     vim.opt.background = "dark"                 -- Set background to dark
     vim.opt.termguicolors = true                -- Enable true color support
-    vim.opt.laststatus = 2                      -- Always show the status line
-    vim.cmd("colorscheme carbonfox")
+    vim.opt.laststatus = 1                      -- Show the status line or not
+    vim.cmd("colorscheme catppuccin")
     vim.cmd("highlight CursorLine guibg=NONE")  -- Set background of cursorline
 end
 
@@ -55,7 +55,6 @@ local function set_find_path()
         "~/.config/nvim/**",
         "~/project/personal/aris/**",
         "~/project/personal/json/**",
-        "~/project/personal/cini/**"
     }
 
     local path_str = ""
@@ -79,7 +78,7 @@ local function set_other_settings()
     vim.opt.belloff = "all"                     -- Disable bell
     vim.opt.updatetime = 300                    -- Set the update time for CursorHold events
     vim.opt.mouse = "a"                         -- Enable mouse support in all modes
-    vim.opt.showmode = false                    -- Disable mode display (useful with lualine)
+    vim.opt.showmode = true                     -- Enable mode display
 end
 
 -- Call all configuration functions
