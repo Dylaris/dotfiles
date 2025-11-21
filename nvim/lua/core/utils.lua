@@ -47,6 +47,7 @@ function parse_error_report()
         "(.-)%((%d+),(%d+)%)",              -- main.c(1,1)
         "(.-):(%d+)",                       -- main.java:1
         'File%s*"([^"]+)",%s*line%s*(%d+)', -- File "main.py", line 1
+        'syntax error at (.-) line (%d+)',  -- syntax error at main.pl line 3
     }
     for _, pattern in ipairs(patterns) do
         local matches = {selection:match(pattern)}

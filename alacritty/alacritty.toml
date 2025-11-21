@@ -1,0 +1,33 @@
+general.import = ["catppuccin-mocha.toml"]
+
+[font]
+size = 12.0
+normal = { family = "CodeNewRoman Nerd Font", style = "Bold" }
+bold   = { family = "CodeNewRoman Nerd Font", style = "Bold" }
+italic = { family = "CodeNewRoman Nerd Font", style = "Italic" }
+
+[window]
+padding = { x = 15, y = 10 }
+dynamic_title = false
+title = "Hello, World"
+dimensions = { columns = 120, lines = 30 }
+
+[cursor]
+style = { shape = "Block", blinking = "On" }
+blink_interval = 750
+
+[keyboard]
+bindings = [
+    { key = "Equals", mods = "Control", action = "IncreaseFontSize" },
+    { key = "Minus",  mods = "Control", action = "DecreaseFontSize" },
+    { key = "Key0",   mods = "Control", action = "ResetFontSize" },
+    { key = "C", mods = "Control|Shift", action = "Copy" },
+    { key = "V", mods = "Control|Shift", action = "Paste" },
+    { key = "N", mods = "Control|Shift", action = "CreateNewWindow" },
+]
+
+[terminal.shell]
+program = "wsl.exe"
+
+[env]
+TERM = "xterm-256color"

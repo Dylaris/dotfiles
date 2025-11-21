@@ -70,6 +70,9 @@ require('neoscroll').setup({
     },
 })
 
+-- neoterm
+vim.g.neoterm_default_mod = "botright"
+
 -- nightfox
 require('nightfox').setup({
     options = {
@@ -119,3 +122,4 @@ require("catppuccin").setup({
     no_italic = true,
     show_end_of_buffer = true,
 })
+

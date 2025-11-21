@@ -27,6 +27,8 @@ require("lazy").setup({
     },
     { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
 
+    { "kassio/neoterm" },
+
     -- Fuzzy search
     {
         'nvim-telescope/telescope.nvim', tag = '0.1.8',

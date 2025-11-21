@@ -1,3 +1,16 @@
+-- Auto create hidden terminal on startup
+vim.api.nvim_create_autocmd("VimEnter", {
+    pattern = "*",
+    callback = function()
+        vim.cmd("Tnew")
+        vim.cmd("wincmd j")
+        local term_buf = vim.api.nvim_get_current_buf()
+        vim.api.nvim_buf_set_option(term_buf, "buflisted", false)
+        vim.api.nvim_buf_set_name(term_buf, "featme")
+        vim.cmd("Tclose")
+    end,
+})
+
 -- Set filetype=c for C header file
 vim.api.nvim_create_autocmd({"BufNewFile", "BufRead"}, {
     pattern = "*.h",
